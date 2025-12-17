@@ -82,10 +82,10 @@ body {
   margin: 1rem 0;
 }
 
-/* YouTube video wrapper */
+/* YouTube video wrapper (responsive) */
 .video-wrapper {
   position: relative;
-  padding-bottom: 56.25%;
+  padding-bottom: 56.25%; /* 16:9 */
   height: 0;
   overflow: hidden;
   margin-top: 1rem;
@@ -97,6 +97,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  border: none;
 }
 
 /* Tableau section */
@@ -104,14 +105,23 @@ body {
   background-color: #f9fafb;
 }
 
-.tableau-wrapper {
-  position: relative;
-  padding-bottom: 60%;
-  height: 0;
-  overflow: hidden;
+/* Responsive Tableau embed */
+.tableau-responsive {
+  width: 100%;
+  height: 650px;
   margin-top: 1rem;
 }
 
-.tableau-wrapper iframe {
-  position: absolute;
-  top: 0;
+.tableau-responsive iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
