@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thomas Holm | Portfolio</title>
+  <meta name="description" content="Professional portfolio site for Thomas Holm. Resume, projects, and contact." />
+
+  <!-- Bootstrap CSS (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Optional: Bootstrap Icons (for social icons) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    /* Small, tasteful custom tweaks (keeps it professional) */
+    .hero {
+      background: linear-gradient(180deg, rgba(13,110,253,0.10), rgba(255,255,255,0));
+    }
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 999px;
+      border: 3px solid rgba(0,0,0,0.08);
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      transition: 0.15s ease-in-out;
+      box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.08);
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">Thomas Holm</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="resume.html">Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+          <!-- Optional: Keep scratch link subtle (you can remove if you prefer) -->
+          <li class="nav-item">
+            <a class="btn btn-outline-primary btn-sm ms-lg-2" href="scratch.html">Scratch Page</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="hero py-5">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-12 col-lg-7">
+          <span class="badge text-bg-primary-subtle text-primary border border-primary-subtle mb-3">
+            Portfolio • Résumé • Projects
+          </span>
+
+          <h1 class="display-5 fw-bold mb-3">
+            Hi, I’m Thomas Holm.
+          </h1>
+
+          <p class="lead text-secondary mb-4">
+            I build results through sales, recruiting, and data-driven decision making.
+            Here you’ll find my résumé, key projects, and ways to connect.
+          </p>
+
+          <div class="d-flex flex-wrap gap-2">
+            <a class="btn btn-primary btn-lg" href="resume.html">
+              View Résumé
+            </a>
+            <a class="btn btn-outline-primary btn-lg" href="projects.html">
+              Explore Projects
+            </a>
+          </div>
+
+          <div class="mt-4 text-secondary small">
+            <i class="bi bi-geo-alt"></i> Minnesota •
+            <i class="bi bi-mortarboard"></i> BYU (Student)
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-5">
+          <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+              <div class="d-flex align-items-center gap-3">
+                <!-- Replace with your actual image path (must exist!) -->
+                <img src="assets/headshot.jpg" alt="Headshot of Thomas Holm" class="profile-img">
+
+                <div>
+                  <h2 class="h5 fw-semibold mb-1">Quick Highlights</h2>
+                  <p class="text-secondary mb-0">Sales • Recruiting • Analytics</p>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <ul class="list-unstyled mb-0">
+                <li class="d-flex gap-2 mb-2">
+                  <i class="bi bi-check-circle text-success"></i>
+                  <span>Leadership experience with revenue impact</span>
+                </li>
+                <li class="d-flex gap-2 mb-2">
+                  <i class="bi bi-check-circle text-success"></i>
+                  <span>Comfortable with Excel, Tableau, SQL basics</span>
+                </li>
+                <li class="d-flex gap-2">
+                  <i class="bi bi-check-circle text-success"></i>
+                  <span>Focused on clear communication & measurable results</span>
+                </li>
+              </ul>
+
+              <div class="mt-4 d-flex gap-2">
+                <a class="btn btn-outline-secondary btn-sm" href="contact.html">
+                  Contact
+                </a>
+                <!-- Optional external links (replace # with real links or remove to avoid “broken links”) -->
+                <a class="btn btn-outline-secondary btn-sm" href="#" aria-label="LinkedIn (add your link)">
+                  <i class="bi bi-linkedin"></i>
+                </a>
+                <a class="btn btn-outline-secondary btn-sm" href="#" aria-label="GitHub (add your link)">
+                  <i class="bi bi-github"></i>
+                </a>
+              </div>
+
+              <p class="text-secondary small mt-3 mb-0">
+                Tip: Replace the “#” links above with your real profiles (or delete them) to avoid broken-link deductions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Feature cards -->
+  <main class="pb-5">
+    <div class="container">
+      <div class="row g-3">
+        <div class="col-12 col-md-4">
+          <a class="text-decoration-none" href="resume.html">
+            <div class="card border-0 shadow-sm card-hover h-100">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <i class="bi bi-file-earmark-text fs-4 text-primary"></i>
+                  <h3 class="h5 mb-0 text-dark">Résumé</h3>
+                </div>
+                <p class="text-secondary mb-0">
+                  Education, experience, skills, and accomplishments in a clean HTML format.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <a class="text-decoration-none" href="projects.html">
+            <div class="card border-0 shadow-sm card-hover h-100">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <i class="bi bi-kanban fs-4 text-primary"></i>
+                  <h3 class="h5 mb-0 text-dark">Projects</h3>
+                </div>
+                <p class="text-secondary mb-0">
+                  Selected work, case studies, and links to what I’m building and learning.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="col-12 col-md-4">
+          <a class="text-decoration-none" href="contact.html">
+            <div class="card border-0 shadow-sm card-hover h-100">
+              <div class="card-body p-4">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <i class="bi bi-envelope fs-4 text-primary"></i>
+                  <h3 class="h5 mb-0 text-dark">Contact</h3>
+                </div>
+                <p class="text-secondary mb-0">
+                  Simple contact page with optional links for networking.
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top bg-white">
+    <div class="container py-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div class="text-secondary small">
+        © <span id="year"></span> Thomas Holm. All rights reserved.
+      </div>
+      <div class="text-secondary small">
+        Built with Bootstrap • Hosted on GitHub Pages
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
