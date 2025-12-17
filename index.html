@@ -82,18 +82,26 @@
           </div>
         </div>
 
-        <div class="col-12 col-lg-5">
-          <div class="card shadow-sm border-0">
-            <div class="card-body p-4">
-              <div class="d-flex align-items-center gap-3">
-                <!-- FIXED: correct path -->
-                <img src="assets/headshot.jpg" alt="Headshot of Thomas Holm" class="profile-img">
-
-                <div>
-                  <h2 class="h5 fw-semibold mb-1">Quick Highlights</h2>
-                  <p class="text-secondary mb-0">Sales • Recruiting • Analytics</p>
-                </div>
-              </div>
+          <div class="d-flex align-items-center gap-3">
+            <img
+              src="assets/headshot.jpg"
+              alt="Headshot of Thomas Holm"
+              class="rounded-circle border"
+              style="width:120px;height:120px;object-fit:cover;"
+              onerror="this.style.display='none'; document.getElementById('headshotFallback').style.display='flex';"
+            >
+          
+            <div id="headshotFallback"
+                 class="rounded-circle border d-none align-items-center justify-content-center"
+                 style="width:120px;height:120px;background:#f8f9fa;color:#6c757d;">
+              TH
+            </div>
+          
+            <div>
+              <h2 class="h5 fw-semibold mb-1">Quick Highlights</h2>
+              <p class="text-secondary mb-0">Sales • Recruiting • Analytics</p>
+            </div>
+          </div>
 
               <hr class="my-4">
 
