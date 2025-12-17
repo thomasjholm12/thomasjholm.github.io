@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Résumé | Thomas Holm</title>
+  <meta name="description" content="HTML résumé for Thomas Holm" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <style>
+    .section-title{
+      border-left: 4px solid #0d6efd;
+      padding-left: .75rem;
+    }
+    .resume-section{ margin-bottom: 2.5rem; }
+    .pill{
+      display:inline-block;
+      padding:.25rem .6rem;
+      border:1px solid rgba(0,0,0,.12);
+      border-radius:999px;
+      background:#fff;
+      font-size:.9rem;
+      margin:.2rem .25rem .2rem 0;
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="index.html">Thomas Holm</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#resumeNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="resumeNav">
+        <ul class="navbar-nav ms-auto gap-lg-2">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="resume.html">Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="py-5 bg-white border-bottom">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-md-8">
+          <h1 class="fw-bold mb-1">Thomas Holm</h1>
+          <p class="text-secondary mb-2">Minneapolis, MN 55446</p>
+          <p class="mb-0 text-secondary">
+            Capable worker with experience in customer service and construction. Quick to understand
+            instructions and implement them day-to-day. Willing to learn new things and open to suggestions
+            to improve customer experience.
+          </p>
+          <div class="mt-3">
+            <span class="badge text-bg-success-subtle text-success border border-success-subtle">
+              Authorized to work in the US for any employer
+            </span>
+          </div>
+        </div>
+
+        <div class="col-md-4 text-md-end">
+          <p class="mb-1">
+            <i class="bi bi-envelope"></i>
+            <a class="text-decoration-none" href="mailto:thomasjholm12@gmail.com">thomasjholm12@gmail.com</a>
+          </p>
+          <p class="mb-1">
+            <i class="bi bi-telephone"></i>
+            <a class="text-decoration-none" href="tel:+16128027896">+1 (612) 802-7896</a>
+          </p>
+          <!-- Optional external link: replace # with your real URL or delete to avoid broken links -->
+          <p class="mb-0">
+            <i class="bi bi-linkedin"></i>
+            <a class="text-decoration-none" href="#">LinkedIn</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="container py-5">
+
+    <!-- Experience -->
+    <section class="resume-section">
+      <h2 class="h4 fw-semibold section-title mb-3">Work Experience</h2>
+
+      <div class="bg-white p-4 rounded shadow-sm mb-3">
+        <div class="d-flex justify-content-between flex-wrap">
+          <strong>PCA Personal Care Assistant</strong>
+          <span class="text-secondary">January 2010 – Present</span>
+        </div>
+        <div class="text-secondary mb-2">Partners In Community Supports — New Brighton, MN</div>
+        <ul class="mb-0">
+          <li>Part-time assistance in caring for a disabled sibling requiring supervision.</li>
+          <li>Maintain wellbeing through organization of personal materials and consistent support.</li>
+          <li>Monitor needs closely and respond quickly to ensure safety and comfort.</li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow-sm mb-3">
+        <div class="d-flex justify-content-between flex-wrap">
+          <strong>Sales Team Lead</strong>
+          <span class="text-secondary">April 2024 – May 2025</span>
+        </div>
+        <div class="text-secondary mb-2">ProForce Pest Control — Raleigh, NC</div>
+        <ul class="mb-0">
+          <li>Led a team of five generating over <strong>$200,000</strong> in revenue.</li>
+          <li>Assisted hundreds of homes with pest and rodent removal services.</li>
+          <li>Developed strategies to improve team performance and customer satisfaction.</li>
+          <li>Contributed to increased service efficiency and improved client retention.</li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow-sm mb-3">
+        <div class="d-flex justify-content-between flex-wrap">
+          <strong>Contractor Apprentice</strong>
+          <span class="text-secondary">July 2018 – September 2019</span>
+        </div>
+        <div class="text-secondary mb-2">Sandscrafted — Minneapolis, MN</div>
+        <ul class="mb-0">
+          <li>Supported construction/reconstruction projects according to OSHA standards.</li>
+          <li>Lifted and transported heavy materials (up to ~70 lbs) and assisted with framing tasks.</li>
+          <li>Helped build household assets: stairwells, walls, ceilings, and decorative elements.</li>
+          <li>Worked with basic electrical circuits and plumbing tasks under supervision.</li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow-sm">
+        <div class="d-flex justify-content-between flex-wrap">
+          <strong>Cashier (Seasonal)</strong>
+          <span class="text-secondary">September 2017 – January 2018</span>
+        </div>
+        <div class="text-secondary mb-2">Target — Shoreview, MN</div>
+        <ul class="mb-0">
+          <li>Processed transactions efficiently (about eight customers per hour on average).</li>
+          <li>Applied discounts/savings when eligible and helped customers locate items.</li>
+          <li>Assisted with restocking (lifting up to ~30 lbs) and supported store operations.</li>
+          <li>Known for being easygoing, attentive to customer needs, and quick to accommodate.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section class="resume-section">
+      <h2 class="h4 fw-semibold section-title mb-3">Education</h2>
+
+      <div class="bg-white p-4 rounded shadow-sm mb-3">
+        <div class="d-flex justify-content-between flex-wrap">
+          <strong>Anoka-Ramsey Community College (Coon Rapids Campus)</strong>
+          <span class="text-secondary">Coon Rapids, MN</span>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap">
+          <em>General Studies (Associate’s Degree)</em>
+          <span class="text-secondary">July 2020 – May 2021</span>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded shadow-sm">
+        <div class="d-flex justify-content-between flex-wrap">
+          <strong>Irondale Senior High School</strong>
+          <span class="text-secondary">New Brighton, MN</span>
+        </div>
+        <div class="d-flex justify-content-between flex-wrap">
+          <em>General Studies (GED)</em>
+          <span class="text-secondary">September 2016 – June 2020</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="resume-section">
+      <h2 class="h4 fw-semibold section-title mb-3">Skills</h2>
+
+      <div class="bg-white p-4 rounded shadow-sm">
+        <h3 class="h6 text-secondary mb-2">Sales & Customer</h3>
+        <div class="mb-3">
+          <span class="pill">Direct sales</span>
+          <span class="pill">Door-to-door</span>
+          <span class="pill">Field sales</span>
+          <span class="pill">B2B sales</span>
+          <span class="pill">Negotiation</span>
+          <span class="pill">Sales negotiation</span>
+          <span class="pill">Lead generation</span>
+          <span class="pill">Cold calling</span>
+          <span class="pill">Objection handling</span>
+          <span class="pill">Closing sales</span>
+          <span class="pill">Customer needs analysis</span>
+          <span class="pill">Client relationship development</span>
+          <span class="pill">Customer service</span>
+          <span class="pill">Phone etiquette</span>
+          <span class="pill">CRM software</span>
+          <span class="pill">Product demos</span>
+          <span class="pill">Product presentation</span>
+        </div>
+
+        <h3 class="h6 text-secondary mb-2">Construction & Trade</h3>
+        <div class="mb-3">
+          <span class="pill">Carpentry</span>
+          <span class="pill">Trim carpentry</span>
+          <span class="pill">Drywall</span>
+          <span class="pill">Remodeling</span>
+          <span class="pill">Residential construction</span>
+          <span class="pill">Construction inspection</span>
+          <span class="pill">Electrical wiring</span>
+          <span class="pill">Electrical systems</span>
+          <span class="pill">Electrical experience</span>
+          <span class="pill">Schematics</span>
+          <span class="pill">NEC</span>
+          <span class="pill">CNC</span>
+          <span class="pill">Heavy lifting</span>
+          <span class="pill">Woodworking</span>
+        </div>
+
+        <h3 class="h6 text-secondary mb-2">Automotive & Technical</h3>
+        <div class="mb-3">
+          <span class="pill">Automotive repair</span>
+          <span class="pill">Automotive diagnostics</span>
+          <span class="pill">Mechanical knowledge</span>
+          <span class="pill">Mechanical troubleshooting</span>
+          <span class="pill">Problem-solving</span>
+          <span class="pill">Math</span>
+        </div>
+
+        <h3 class="h6 text-secondary mb-2">Professional & Office</h3>
+        <div class="mb-0">
+          <span class="pill">Communication skills</span>
+          <span class="pill">Interpersonal skills</span>
+          <span class="pill">Clear verbal communication</span>
+          <span class="pill">Written communication</span>
+          <span class="pill">Time management</span>
+          <span class="pill">Organizational skills</span>
+          <span class="pill">Management</span>
+          <span class="pill">Microsoft Office</span>
+          <span class="pill">Microsoft Word</span>
+          <span class="pill">Microsoft Excel</span>
+          <span class="pill">Microsoft Outlook</span>
+          <span class="pill">Computer skills</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Languages -->
+    <section class="resume-section">
+      <h2 class="h4 fw-semibold section-title mb-3">Languages</h2>
+      <div class="bg-white p-4 rounded shadow-sm">
+        <ul class="mb-0">
+          <li><strong>English:</strong> Fluent</li>
+          <li><strong>Mandarin:</strong> Intermediate</li>
+          <li><strong>Cantonese:</strong> Beginner</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Certifications / Licenses -->
+    <section class="resume-section">
+      <h2 class="h4 fw-semibold section-title mb-3">Certifications & Licenses</h2>
+      <div class="bg-white p-4 rounded shadow-sm">
+        <ul class="mb-0">
+          <li><strong>Basic Professionalism</strong> (January 2020 – Present)</li>
+          <li>Pesticide Applicator’s License</li>
+          <li>Electrician Apprentice</li>
+          <li>Driver's License</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Groups (optional content) -->
+    <section class="resume-section">
+      <h2 class="h4 fw-semibold section-title mb-3">Groups</h2>
+      <div class="bg-white p-4 rounded shadow-sm">
+        <ul class="mb-0">
+          <li>
+            <strong>LDS</strong> (December 2001 – Present) — Served a volunteer mission in Hong Kong speaking Cantonese Chinese.
+          </li>
+        </ul>
+        <p class="text-secondary small mb-0 mt-2">
+          Note: If you prefer not to include religious affiliation on a public résumé, you can rename this section to
+          “Volunteer Service” and remove the group label.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top bg-white">
+    <div class="container py-4 d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+      <div class="text-secondary small">© <span id="year"></span> Thomas Holm</div>
+      <div class="text-secondary small">HTML résumé • Bootstrap styled</div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
