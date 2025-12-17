@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scratch Page | Thomas Holm</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Custom scratch stylesheet -->
+  <link rel="stylesheet" href="scratch.css">
+</head>
+
+<body>
+
+  <!-- Navigation back to professional pages -->
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="resume.html">Résumé</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+    <a href="app.html">AI App</a>
+  </div>
+
+  <!-- Hero section -->
+  <div class="section hero">
+    <h1>Scratch Page</h1>
+    <p>
+      This page was built from scratch using only HTML and CSS to demonstrate
+      foundational web development skills.
+    </p>
+
+    <!-- On-page anchor link -->
+    <a href="#tableau" class="anchor-link">Jump to Tableau Visualization ↓</a>
+  </div>
+
+  <!-- Content section -->
+  <div class="section content">
+    <h2>A Personal Interest: Continuous Improvement</h2>
+    <p>
+      I enjoy learning skills that stack over time—sales, analytics, and technology.
+      Below is an example of structured thinking using nested lists.
+    </p>
+
+    <!-- Ordered list with unordered list inside -->
+    <ol>
+      <li>Skills I’m Developing
+        <ul>
+          <li>Sales communication</li>
+          <li>Data analysis</li>
+          <li>Web development</li>
+        </ul>
+      </li>
+      <li>How I Practice
+        <ul>
+          <li>Hands-on projects</li>
+          <li>Coursework</li>
+          <li>Self-directed learning</li>
+        </ul>
+      </li>
+    </ol>
+  </div>
+
+  <!-- Image + video section -->
+  <div class="section media">
+    <h2>Learning Through Media</h2>
+
+    <!-- Custom image (NOT Bootstrap) -->
+    <img src="assets/headshot.jpg" alt="Thomas Holm" class="custom-image">
+
+    <p>
+      This video reflects the importance of principles and disciplined thinking.
+    </p>
+
+    <!-- Embedded YouTube video -->
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/B9XGUpQZY38"
+        title="Principles for Success"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Tableau section -->
+  <div class="section tableau" id="tableau">
+    <h2>Interactive Tableau Visualization</h2>
+    <p>
+      Below is a live, interactive Tableau visualization embedded directly into the page.
+    </p>
+
+    <!-- LIVE Tableau Embed -->
+    <div class="tableau-wrapper">
+      <iframe
+        src="https://public.tableau.com/views/RegionalSampleWorkbook/Storms?:showVizHome=no&:embed=true"
+        frameborder="0"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      © <span id="year"></span> Thomas Holm |
+      <a href="index.html">Back to Professional Site</a>
+    </p>
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+</body>
+</html>
