@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AI Mini App | Number Guessing Game</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: #f4f7fb;
+      color: #1f2933;
+    }
+
+    .nav {
+      background-color: #ffffff;
+      padding: 1rem 2rem;
+      display: flex;
+      gap: 1.5rem;
+      border-bottom: 1px solid #dfe3e8;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #0d6efd;
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 3rem auto;
+      background: #ffffff;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #0d6efd;
+    }
+
+    select, input, button {
+      padding: 0.6rem;
+      font-size: 1rem;
+      margin-top: 0.5rem;
+      width: 100%;
+    }
+
+    button {
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      background-color: #0b5ed7;
+    }
+
+    .feedback {
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+
+    .stats {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #4b5563;
+    }
+
+    .reset {
+      margin-top: 1.5rem;
+      background-color: #6b7280;
+    }
+
+    .reset:hover {
+      background-color: #4b5563;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <div class="nav">
+    <a href="index.html">Home</a>
+    <a href="resume.html">Résumé</a>
+    <a href="projects.html">Projects</a>
+    <a href="scratch.html">Scratch Page</a>
+  </div>
+
+  <!-- App -->
+  <div class="container">
+    <h1>Number Guessing Game</h1>
+
+    <p>
+      This mini web app was created with AI assistance and refined by me.
+      Choose a difficulty level and try to guess the number!
+    </p>
+
+    <label for="difficulty"><strong>Select Difficulty</strong></label>
+    <select id="difficulty">
+      <option value="10">Easy (1–10)</option>
+      <option value="50">Medium (1–50)</option>
+      <option value="100">Hard (1–100)</option>
+    </select>
+
+    <hr>
+
+    <label for="guess"><strong>Your Guess</strong></label>
+    <input type="number" id="guess" placeholder="Enter a number">
+
+    <button onclick="makeGuess()">Submit Guess</button>
+
+    <div class="feedback" id="feedback"></div>
+
+    <div class="stats" id="stats">
+      Attempts: 0
+    </div>
+
+    <button class="reset" onclick="resetGame()">Start New Game</button>
+  </div>
+
+  <script>
+    let maxNumber = 10;
+    let targetNumber = Math.floor(Math.random() * maxNumber) + 1;
+    let attempts = 0;
+
+    const feedbackEl = document.getElementById("feedback");
+    const statsEl = document.getElementById("stats");
+    const difficultyEl = document.getElementById("difficulty");
+
+    difficultyEl.addEventListener("change", resetGame);
+
+    function makeGuess() {
+      const guessInput = document.getElementById("guess");
+      const guess = Number(guessInput.value);
+
+      if (!guess || guess < 1 || guess > maxNumber) {
+        feedbackEl.textContent = `Enter a number between 1 and ${maxNumber}.`;
+        feedbackEl.style.color = "red";
+        return;
+      }
+
+      attempts++;
+
+      if (guess === targetNumber) {
+        feedbackEl.textContent = "🎉 Correct! You guessed the number!";
+        feedbackEl.style.color = "green";
+      } else if (guess < targetNumber) {
+        feedbackEl.textContent = "Too low. Try again.";
+        feedbackEl.style.color = "orange";
+      } else {
+        feedbackEl.textContent = "Too high. Try again.";
+        feedbackEl.style.color = "orange";
+      }
+
+      statsEl.textContent = `Attempts: ${attempts}`;
+      guessInput.value = "";
+    }
+
+    function resetGame() {
+      maxNumber = Number(difficultyEl.value);
+      targetNumber = Math.floor(Math.random() * maxNumber) + 1;
+      attempts = 0;
+      feedbackEl.textContent = "";
+      statsEl.textContent = "Attempts: 0";
+      document.getElementById("guess").value = "";
+    }
+  </script>
+
+</body>
+</html>
