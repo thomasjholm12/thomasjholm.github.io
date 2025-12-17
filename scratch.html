@@ -12,7 +12,7 @@
 <body>
 
   <!-- Navigation back to professional pages -->
-  <div class="nav">
+  <div class="nav" id="top">
     <a href="index.html">Home</a>
     <a href="resume.html">Résumé</a>
     <a href="projects.html">Projects</a>
@@ -63,7 +63,8 @@
   <div class="section media">
     <h2>Learning Through Media</h2>
 
-    <img src="assets/secondary.jpeg" alt="Thomas Holm" class="custom-image">
+    <!-- Custom image (NOT Bootstrap) -->
+    <img src="assets/headshot.jpg" alt="Thomas Holm" class="custom-image">
 
     <p>
       This video reflects the importance of principles and disciplined thinking.
@@ -88,14 +89,19 @@
       Below is a live, interactive Tableau visualization embedded directly into the page.
     </p>
 
-    <!-- LIVE Tableau Embed -->
-    <div class="tableau-wrapper">
+    <!-- LIVE Tableau Embed (responsive + readable) -->
+    <div class="tableau-responsive">
       <iframe
         src="https://public.tableau.com/views/RegionalSampleWorkbook/Storms?:showVizHome=no&:embed=true"
-        frameborder="0"
+        title="Tableau Visualization"
+        loading="lazy"
         allowfullscreen>
       </iframe>
     </div>
+
+    <p class="small" style="margin-top: 12px;">
+      <a href="#top">Back to top ↑</a>
+    </p>
   </div>
 
   <!-- Footer -->
