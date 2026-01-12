@@ -43,24 +43,26 @@
       color: var(--gold-muted);
     }
 
-    /* ===== Banner (fixed size + centered crop) ===== */
-    .banner-header {
-      width: 100%;
-      height: 110px;              /* Smaller + cleaner. Try 110–140 */
-      overflow: hidden;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    /* ===== Banner (TEXT-SAFE VERSION) ===== */
+.banner-header {
+  width: 100%;
+  height: 140px;        /* adjust 130–180 if needed */
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;   /* prevents text from touching edges */
+}
 
-    .banner-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;          /* Center-crop instead of stretching */
-      object-position: center 75%;    /* Center the banner content */
-      display: block;
-    }
+.banner-img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* NEVER crop text logos */
+  display: block;
+}
+
 
     /* Optional: slightly smaller banner on phones */
     @media (max-width: 576px) {
