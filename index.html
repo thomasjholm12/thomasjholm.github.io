@@ -13,35 +13,124 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
   <style>
-    body {
-      background-color: #f8f9fa;
-    }
+  :root {
+    --bg-main: #121212;
+    --bg-surface: #1f1f1f;
+    --bg-surface-2: #242424;
+    --text-main: #e6e6e6;
+    --text-muted: #b0b0b0;
+    --gold: #d4af37;
+    --gold-muted: #bfa133;
+    --border-subtle: rgba(255,255,255,0.08);
+  }
 
-    .hero {
-      background: linear-gradient(180deg, rgba(13,110,253,0.10), rgba(255,255,255,0));
-    }
+  body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+  }
 
-    .card-hover:hover {
-      transform: translateY(-2px);
-      transition: 0.15s ease-in-out;
-      box-shadow: 0 0.75rem 1.5rem rgba(0,0,0,0.08);
-    }
+  /* Links */
+  a {
+    color: var(--gold);
+  }
 
-    /* ===== Full-width banner logo ===== */
-    .banner-header {
-      width: 100%;
-      background: #000;
-      overflow: hidden;
-    }
+  a:hover {
+    color: var(--gold-muted);
+  }
 
-    .banner-img {
-      width: 100%;
-      height: auto;
-      max-height: 200px;
-      object-fit: cover;
-      display: block;
-    }
-  </style>
+  /* ===== Banner ===== */
+  .banner-header {
+    background: #000;
+  }
+
+  /* ===== Navigation ===== */
+  nav {
+    background-color: var(--bg-surface) !important;
+    border-bottom: 1px solid var(--border-subtle) !important;
+  }
+
+  .nav-link {
+    color: var(--text-muted);
+  }
+
+  .nav-link.active,
+  .nav-link:hover {
+    color: var(--gold);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    background: linear-gradient(
+      180deg,
+      rgba(212, 175, 55, 0.08),
+      rgba(18, 18, 18, 0)
+    );
+  }
+
+  /* ===== Cards ===== */
+  .card {
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+  }
+
+  .card-hover {
+    transition: all 0.15s ease-in-out;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.6);
+  }
+
+  /* ===== Buttons ===== */
+  .btn-primary {
+    background-color: var(--gold);
+    border-color: var(--gold);
+    color: #000;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--gold-muted);
+    border-color: var(--gold-muted);
+    color: #000;
+  }
+
+  .btn-outline-primary {
+    color: var(--gold);
+    border-color: var(--gold);
+  }
+
+  .btn-outline-primary:hover {
+    background-color: var(--gold);
+    color: #000;
+  }
+
+  .btn-outline-secondary {
+    color: var(--text-muted);
+    border-color: var(--border-subtle);
+  }
+
+  .btn-outline-secondary:hover {
+    background-color: var(--bg-surface-2);
+    color: var(--text-main);
+  }
+
+  /* ===== Icons ===== */
+  .bi {
+    color: var(--gold);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background-color: var(--bg-surface);
+    border-top: 1px solid var(--border-subtle);
+  }
+
+  footer .text-secondary {
+    color: var(--text-muted) !important;
+  }
+</style>
+
 </head>
 
 <body>
