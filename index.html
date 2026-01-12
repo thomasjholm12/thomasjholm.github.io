@@ -43,33 +43,24 @@
       color: var(--gold-muted);
     }
 
-   /* ===== Responsive Text-Safe Banner ===== */
-.banner-header {
-  width: 100%;
-  height: clamp(90px, 12vw, 180px);
-  background: #000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: clamp(8px, 1.5vw, 16px);
-}
-
-.banner-img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;   /* never crop text */
-  display: block;
-}
-
-
-
-    /* Optional: slightly smaller banner on phones */
-    @media (max-width: 576px) {
-      .banner-header {
-        height: 95px;
-      }
+       /* ===== Full-width responsive banner (text-safe) ===== */
+    .banner-header {
+      width: 100%;
+      height: clamp(90px, 12vw, 190px);   /* responsive height */
+      background: #000;                  /* full-width bar */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(8px, 1.5vw, 18px);  /* keeps text away from edges */
+    }
+    
+    /* Image spans full width of the banner area, but never crops text */
+    .banner-img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;               /* NO cropping */
+      object-position: center;
+      display: block;
     }
 
     /* ===== Navigation ===== */
