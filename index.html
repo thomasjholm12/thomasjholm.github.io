@@ -43,25 +43,26 @@
       color: var(--gold-muted);
     }
 
-       /* ===== Full-width responsive banner (text-safe) ===== */
+          /* ===== Full-width banner with scalable logo ===== */
     .banner-header {
       width: 100%;
-      height: clamp(90px, 12vw, 190px);   /* responsive height */
-      background: #000;                  /* full-width bar */
+      height: clamp(110px, 14vw, 220px); /* taller on large screens */
+      background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(8px, 1.5vw, 18px);  /* keeps text away from edges */
+      padding: clamp(10px, 2vw, 24px);
     }
     
-    /* Image spans full width of the banner area, but never crops text */
+    /* Let the logo stretch wider while staying text-safe */
     .banner-img {
       width: 100%;
-      height: 100%;
-      object-fit: contain;               /* NO cropping */
-      object-position: center;
+      max-width: 1400px;     /* prevents over-stretching on ultrawide monitors */
+      height: auto;
+      object-fit: contain;  /* never crop text */
       display: block;
     }
+
 
     /* ===== Navigation ===== */
     nav {
