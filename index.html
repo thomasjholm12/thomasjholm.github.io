@@ -30,9 +30,7 @@
     }
 
     /* Make Bootstrap "secondary" text readable on dark */
-    .text-secondary {
-      color: var(--text-muted) !important;
-    }
+    .text-secondary { color: var(--text-muted) !important; }
 
     /* Links */
     a { color: var(--gold); }
@@ -81,8 +79,35 @@
       color: var(--gold);
     }
 
-    .dropdown-toggle::after {
-      border-top-color: var(--gold);
+    .dropdown-toggle::after { border-top-color: var(--gold); }
+
+    /* ===== Hover + slide transition for dropdowns (desktop) ===== */
+    @media (min-width: 992px) {
+      /* We animate visibility/opacity/transform instead of display:none/block */
+      .dropdown-menu {
+        display: block;                 /* keep positioned (absolute) but hidden */
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-10px);
+        transition: opacity 180ms ease, transform 180ms ease, visibility 180ms ease;
+        pointer-events: none;
+      }
+
+      .dropdown-menu.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      /* Respect reduced motion */
+      @media (prefers-reduced-motion: reduce) {
+        .dropdown-menu,
+        .dropdown-menu.show {
+          transition: none !important;
+          transform: none !important;
+        }
+      }
     }
 
     /* ===== Hero ===== */
@@ -152,11 +177,7 @@
 
   <!-- Full-width Banner -->
   <header class="banner-header">
-    <img
-      src="Banner.png"
-      alt="Gold Standard Detailing Banner Logo"
-      class="banner-img"
-    >
+    <img src="Banner.png" alt="Gold Standard Detailing Banner Logo" class="banner-img">
   </header>
 
   <!-- Navigation (with dropdowns) -->
@@ -169,7 +190,11 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
             Résumé
           </a>
           <ul class="dropdown-menu">
@@ -181,7 +206,11 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
             Projects
           </a>
           <ul class="dropdown-menu">
@@ -197,7 +226,11 @@
         </li>
 
         <li class="nav-item dropdown">
-          <a class="btn btn-outline-primary btn-sm dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a class="btn btn-outline-primary btn-sm dropdown-toggle"
+             href="#"
+             role="button"
+             data-bs-toggle="dropdown"
+             aria-expanded="false">
             Scratch Page
           </a>
           <ul class="dropdown-menu">
@@ -379,8 +412,45 @@
 
   <!-- Bootstrap JS (bundle includes dropdowns) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <script>
+    // Hover dropdowns + slide animation (desktop only)
+    document.addEventListener("DOMContentLoaded", () => {
+      const isDesktop = window.matchMedia("(min-width: 992px)");
+
+      document.querySelectorAll(".nav-item.dropdown").forEach((dropdown) => {
+        const toggleEl = dropdown.querySelector('[data-bs-toggle="dropdown"]');
+        if (!toggleEl) return;
+
+        // Prevent the page from jumping to top on click (href="#")
+        toggleEl.addEventListener("click", (e) => e.preventDefault());
+
+        const dd = bootstrap.Dropdown.getOrCreateInstance(toggleEl, {
+          autoClose: true
+        });
+
+        let closeTimer;
+
+        const open = () => {
+          if (!isDesktop.matches) return; // keep click behavior on mobile
+          clearTimeout(closeTimer);
+          dd.show();
+        };
+
+        const close = () => {
+          if (!isDesktop.matches) return;
+          clearTimeout(closeTimer);
+          closeTimer = setTimeout(() => dd.hide(), 140); // delay prevents flicker
+        };
+
+        dropdown.addEventListener("mouseenter", open);
+        dropdown.addEventListener("mouseleave", close);
+      });
+    });
   </script>
 
 </body>
