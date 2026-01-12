@@ -43,15 +43,15 @@
       color: var(--gold-muted);
     }
 
-    /* ===== Banner (TEXT-SAFE VERSION) ===== */
+   /* ===== Responsive Text-Safe Banner ===== */
 .banner-header {
   width: 100%;
-  height: 140px;        /* adjust 130–180 if needed */
+  height: clamp(90px, 12vw, 180px);
   background: #000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;   /* prevents text from touching edges */
+  padding: clamp(8px, 1.5vw, 16px);
 }
 
 .banner-img {
@@ -59,9 +59,10 @@
   max-height: 100%;
   width: auto;
   height: auto;
-  object-fit: contain; /* NEVER crop text logos */
+  object-fit: contain;   /* never crop text */
   display: block;
 }
+
 
 
     /* Optional: slightly smaller banner on phones */
