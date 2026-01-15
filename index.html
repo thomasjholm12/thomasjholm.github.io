@@ -33,23 +33,47 @@
     a { color: var(--gold); }
     a:hover { color: var(--gold-muted); }
 
-    /* ===== Banner ===== */
+    /* ===== Banner with Video Background ===== */
     .banner-header {
+      position: relative;
       width: 100%;
-      height: clamp(110px, 14vw, 220px);
+      height: clamp(140px, 18vw, 260px);
+      overflow: hidden;
       background: #000;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(10px, 2vw, 24px);
+    }
+
+    .banner-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: scale(1.08);
+      filter: blur(6px) brightness(0.45) contrast(1.1);
+      z-index: 0;
+    }
+
+    .banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(212,175,55,0.15),
+        rgba(0,0,0,0.85)
+      );
+      z-index: 1;
     }
 
     .banner-img {
+      position: relative;
+      z-index: 2;
       width: 100%;
       max-width: 1400px;
       height: auto;
-      object-fit: contain;
-      object-position: center 45%;
+      padding: clamp(12px, 2vw, 24px);
     }
 
     /* ===== Nav ===== */
@@ -62,37 +86,13 @@
     .nav-link.active,
     .nav-link:hover { color: var(--gold); }
 
-    /* ===== Hero Video Background ===== */
+    /* ===== Hero ===== */
     .hero {
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transform: scale(1.06);
-      filter: blur(6px) brightness(0.65) contrast(1.05);
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(212,175,55,0.10),
-        rgba(18,18,18,0.88)
+        rgba(212,175,55,0.08),
+        rgba(18,18,18,0)
       );
-      z-index: 1;
-    }
-
-    .hero .container {
-      position: relative;
-      z-index: 2;
     }
 
     /* ===== Cards ===== */
@@ -144,7 +144,17 @@
 
   <!-- Banner -->
   <header class="banner-header">
-    <img src="Banner.png" alt="Gold Standard Detailing Banner Logo" class="banner-img">
+
+    <video class="banner-video" autoplay muted loop playsinline preload="auto">
+      <source src="Detailvid.mp4" type="video/mp4">
+    </video>
+
+    <div class="banner-overlay"></div>
+
+    <img src="Banner.png"
+         alt="Gold Standard Detailing Banner Logo"
+         class="banner-img">
+
   </header>
 
   <!-- Navigation -->
@@ -161,14 +171,6 @@
 
   <!-- Hero -->
   <header class="hero py-5">
-
-    <!-- Background Video -->
-    <video class="hero-video" autoplay muted loop playsinline preload="auto">
-      <source src="Detailvid.mp4" type="video/mp4">
-    </video>
-
-    <div class="hero-overlay"></div>
-
     <div class="container">
       <div class="row align-items-center g-4">
 
