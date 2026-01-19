@@ -72,6 +72,7 @@
       max-width: 1400px;
       padding: clamp(12px, 2vw, 24px);
     }
+    
 
     /* ===== NAV ===== */
     nav {
@@ -174,6 +175,55 @@
       background-color: var(--bg-surface);
       border-top: 1px solid var(--border-subtle);
     }
+        /* ===== SLIDING BUTTON EFFECT ===== */
+    .btn-slide {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn-slide::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--gold);
+      transform: translateX(-100%);
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+    
+    .btn-slide:hover::before {
+      transform: translateX(0);
+    }
+    
+    .btn-slide:hover {
+      color: #000 !important;
+    }
+    
+    .btn-slide-outline {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    .btn-slide-outline::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: var(--gold);
+      transform: translateX(100%);
+      transition: transform 0.35s ease;
+      z-index: -1;
+    }
+    
+    .btn-slide-outline:hover::before {
+      transform: translateX(0);
+    }
+    
+    .btn-slide-outline:hover {
+      color: #000 !important;
+    }
+
   </style>
 </head>
 
