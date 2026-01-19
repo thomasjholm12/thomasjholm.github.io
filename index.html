@@ -9,9 +9,6 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-  <!-- Bootstrap Icons -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
   <style>
     :root {
       --bg-main: #121212;
@@ -29,45 +26,26 @@
       color: var(--text-main);
     }
 
-    .text-secondary { color: var(--text-muted) !important; }
-    a { color: var(--gold); }
-    a:hover { color: var(--gold-muted); }
-
-    /* ===== NAV BAR ===== */
+    /* ===== NAV ===== */
     nav {
-      background-color: var(--bg-surface) !important;
-      border-bottom: 1px solid var(--border-subtle) !important;
+      background-color: var(--bg-surface);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
     .nav-link {
       color: var(--text-muted) !important;
+      transition: color 0.15s ease;
     }
 
     .nav-link:hover {
       color: var(--gold) !important;
     }
 
-    /* 🔒 FORCE SERVICES TAB TO ALWAYS BE GOLD */
-    .nav-link.dropdown-toggle,
-    .nav-link.dropdown-toggle:hover,
-    .nav-link.dropdown-toggle:focus,
-    .nav-link.dropdown-toggle:active,
-    .nav-link.dropdown-toggle.show,
-    .nav-link.dropdown-toggle.active {
-      color: var(--gold) !important;
-    }
-
-    /* Remove Bootstrap blue outline/shadow */
-    .nav-link.dropdown-toggle:focus,
-    .nav-link.dropdown-toggle:active {
-      box-shadow: none !important;
-      outline: none !important;
-    }
-
-    /* Dropdown menu styling */
+    /* Dropdown menu */
     .dropdown-menu {
       background-color: var(--bg-surface);
       border: 1px solid var(--border-subtle);
+      margin-top: 0;
     }
 
     .dropdown-item {
@@ -79,16 +57,30 @@
       color: var(--gold);
     }
 
+    /* 🔥 OPEN DROPDOWN ON HOVER (DESKTOP ONLY) */
+    @media (min-width: 992px) {
+      .nav-item.dropdown:hover > .dropdown-menu {
+        display: block;
+      }
+
+      .nav-item.dropdown:hover > .nav-link {
+        color: var(--gold) !important;
+      }
+    }
+
+    /* Prevent blue focus/active states */
+    .nav-link:focus,
+    .nav-link:active {
+      color: var(--gold) !important;
+      box-shadow: none;
+      outline: none;
+    }
+
     /* ===== Banner ===== */
     .banner-header {
       position: relative;
-      width: 100%;
       height: clamp(140px, 18vw, 260px);
       overflow: hidden;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
     }
 
     .banner-video {
@@ -97,9 +89,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transform: scale(1.08);
-      filter: blur(6px) brightness(0.45) contrast(1.1);
-      z-index: 0;
+      filter: blur(6px) brightness(0.45);
     }
 
     .banner-overlay {
@@ -110,52 +100,13 @@
         rgba(212,175,55,0.15),
         rgba(0,0,0,0.85)
       );
-      z-index: 1;
     }
 
     .banner-img {
       position: relative;
       z-index: 2;
-      width: 100%;
       max-width: 1400px;
-      padding: clamp(12px, 2vw, 24px);
-    }
-
-    /* ===== Hero ===== */
-    .hero {
-      background: linear-gradient(
-        180deg,
-        rgba(212,175,55,0.08),
-        rgba(18,18,18,0)
-      );
-    }
-
-    /* ===== Buttons ===== */
-    .btn-primary {
-      background-color: var(--gold);
-      border-color: var(--gold);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--gold-muted);
-      border-color: var(--gold-muted);
-      color: #000;
-    }
-
-    .btn-outline-primary {
-      color: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .btn-outline-primary:hover {
-      background-color: var(--gold);
-      color: #000;
-    }
-
-    footer {
-      background-color: var(--bg-surface);
-      border-top: 1px solid var(--border-subtle);
+      padding: 24px;
     }
   </style>
 </head>
@@ -168,79 +119,48 @@
       <source src="Detailvid.mp4" type="video/mp4">
     </video>
     <div class="banner-overlay"></div>
-    <img src="Banner.png" alt="Gold Standard Detailing Banner Logo" class="banner-img">
+    <img src="Banner.png" class="banner-img" alt="Banner">
   </header>
 
   <!-- Navigation -->
   <nav class="sticky-top">
     <div class="container py-2">
-      <ul class="nav justify-content-center gap-3 align-items-center">
+      <ul class="nav justify-content-center gap-4">
 
         <li class="nav-item">
-          <a class="nav-link active" href="index.html">Home</a>
+          <a class="nav-link" href="index.html">Home</a>
         </li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle"
-             href="#"
-             id="servicesDropdown"
-             role="button"
-             data-bs-toggle="dropdown"
-             aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" role="button">
             Services
           </a>
-
-          <ul class="dropdown-menu dropdown-menu-dark text-center">
-            <li><a class="dropdown-item" href="services.html#gold">Gold Standard</a></li>
-            <li><a class="dropdown-item" href="services.html#silver">Silver Standard</a></li>
-            <li><a class="dropdown-item" href="services.html#bronze">Bronze Standard</a></li>
-
+          <ul class="dropdown-menu text-center">
+            <li><a class="dropdown-item" href="#">Gold Standard</a></li>
+            <li><a class="dropdown-item" href="#">Silver Standard</a></li>
+            <li><a class="dropdown-item" href="#">Bronze Standard</a></li>
             <li><hr class="dropdown-divider"></li>
-
-            <li><a class="dropdown-item" href="services.html#interior">Interior Service</a></li>
-            <li><a class="dropdown-item" href="services.html#exterior">Exterior Service</a></li>
-
+            <li><a class="dropdown-item" href="#">Interior Service</a></li>
+            <li><a class="dropdown-item" href="#">Exterior Service</a></li>
             <li><hr class="dropdown-divider"></li>
-
-            <li><a class="dropdown-item" href="services.html#addons">Add-Ons</a></li>
+            <li><a class="dropdown-item" href="#">Add-Ons</a></li>
           </ul>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="projects.html">Projects</a>
+          <a class="nav-link" href="#">Projects</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="contact.html">Contact</a>
+          <a class="nav-link" href="#">Contact</a>
         </li>
 
       </ul>
     </div>
   </nav>
 
-  <!-- Hero -->
-  <header class="hero py-5">
-    <div class="container">
-      <h1 class="display-5 fw-bold mb-3">Hi, I’m Thomas Holm.</h1>
-      <p class="lead text-secondary mb-4">
-        I build results through sales, recruiting, and data-driven decision making.
-      </p>
-    </div>
-  </header>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container py-4 text-center text-secondary small">
-      © <span id="year"></span> Thomas Holm. All rights reserved.
-    </div>
-  </footer>
-
-  <!-- Bootstrap JS -->
+  <!-- Bootstrap JS (for mobile tap) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
 
 </body>
 </html>
