@@ -72,7 +72,6 @@
       max-width: 1400px;
       padding: clamp(12px, 2vw, 24px);
     }
-    
 
     /* ===== NAV ===== */
     nav {
@@ -155,75 +154,58 @@
       color: #000;
     }
 
-    .btn-primary:hover {
-      background-color: var(--gold-muted);
-      border-color: var(--gold-muted);
-      color: #000;
-    }
-
     .btn-outline-primary {
       color: var(--gold);
       border-color: var(--gold);
     }
 
-    .btn-outline-primary:hover {
+    /* ===== SLIDING BUTTON EFFECT (FIXED) ===== */
+    .btn-slide,
+    .btn-slide-outline {
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      transition: transform 0.15s ease;
+    }
+
+    .btn-slide::before,
+    .btn-slide-outline::before {
+      content: "";
+      position: absolute;
+      inset: 0;
       background-color: var(--gold);
-      color: #000;
+      z-index: 0;
+      transition: transform 0.35s ease;
+    }
+
+    .btn-slide::before {
+      transform: translateX(-100%);
+    }
+
+    .btn-slide-outline::before {
+      transform: translateX(100%);
+    }
+
+    .btn-slide:hover::before,
+    .btn-slide-outline:hover::before {
+      transform: translateX(0);
+    }
+
+    .btn-slide:hover,
+    .btn-slide-outline:hover {
+      color: #000 !important;
+      transform: translateY(-1px);
+    }
+
+    .btn-slide.btn-primary:hover,
+    .btn-slide-outline.btn-outline-primary:hover {
+      background-color: transparent !important;
     }
 
     footer {
       background-color: var(--bg-surface);
       border-top: 1px solid var(--border-subtle);
     }
-        /* ===== SLIDING BUTTON EFFECT ===== */
-    .btn-slide {
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
-    .btn-slide::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: var(--gold);
-      transform: translateX(-100%);
-      transition: transform 0.35s ease;
-      z-index: -1;
-    }
-    
-    .btn-slide:hover::before {
-      transform: translateX(0);
-    }
-    
-    .btn-slide:hover {
-      color: #000 !important;
-    }
-    
-    .btn-slide-outline {
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
-    .btn-slide-outline::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-color: var(--gold);
-      transform: translateX(100%);
-      transition: transform 0.35s ease;
-      z-index: -1;
-    }
-    
-    .btn-slide-outline:hover::before {
-      transform: translateX(0);
-    }
-    
-    .btn-slide-outline:hover {
-      color: #000 !important;
-    }
-
   </style>
 </head>
 
@@ -283,15 +265,9 @@
         Professional interior and exterior detailing with a focus on quality and consistency.
       </p>
       <div class="d-flex justify-content-center gap-3">
-        <a class="btn btn-primary btn-lg btn-slide" href="services.html">
-          View Services
-        </a>
-      
-        <a class="btn btn-outline-primary btn-lg btn-slide-outline" href="contact.html">
-          Contact Us
-        </a>
+        <a class="btn btn-primary btn-lg btn-slide" href="services.html">View Services</a>
+        <a class="btn btn-outline-primary btn-lg btn-slide-outline" href="contact.html">Contact Us</a>
       </div>
-
     </div>
   </header>
 
@@ -321,54 +297,6 @@
             <a href="services.html#exterior" class="btn btn-outline-primary">Learn More</a>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why Choose Us -->
-  <section class="py-5">
-    <div class="container text-center">
-      <h2 class="fw-bold mb-3">Why Choose Us</h2>
-      <div class="row g-4 justify-content-center">
-        <div class="col-md-3">
-          <div class="card card-hover p-3 h-100">
-            <h6 class="fw-bold">Premium Products</h6>
-            <p class="text-secondary small mb-0">Professional-grade tools and materials.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card card-hover p-3 h-100">
-            <h6 class="fw-bold">Attention to Detail</h6>
-            <p class="text-secondary small mb-0">Every vehicle receives a thorough process.</p>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="card card-hover p-3 h-100">
-            <h6 class="fw-bold">Quality Focused</h6>
-            <p class="text-secondary small mb-0">No shortcuts. No rushed jobs.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Add-Ons -->
-  <section class="py-5 text-center">
-    <div class="container">
-      <h2 class="fw-bold mb-3">Detailing Add-Ons</h2>
-      <p class="text-secondary mb-4">Enhance your service with optional upgrades.</p>
-      <a href="services.html#addons" class="btn btn-primary btn-lg">View Add-Ons</a>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-5 text-center">
-    <div class="container">
-      <h2 class="fw-bold mb-3">Ready to Book?</h2>
-      <p class="text-secondary mb-4">Schedule your detail or reach out with questions.</p>
-      <div class="d-flex justify-content-center gap-3">
-        <a href="services.html" class="btn btn-primary btn-lg">View Services</a>
-        <a href="contact.html" class="btn btn-outline-primary btn-lg">Contact Us</a>
       </div>
     </div>
   </section>
