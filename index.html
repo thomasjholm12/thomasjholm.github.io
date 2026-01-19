@@ -33,7 +33,21 @@
     a { color: var(--gold); }
     a:hover { color: var(--gold-muted); }
 
-    /* Keep Services nav link gold in ALL states */
+    /* ===== NAV BAR ===== */
+    nav {
+      background-color: var(--bg-surface) !important;
+      border-bottom: 1px solid var(--border-subtle) !important;
+    }
+
+    .nav-link {
+      color: var(--text-muted) !important;
+    }
+
+    .nav-link:hover {
+      color: var(--gold) !important;
+    }
+
+    /* 🔒 FORCE SERVICES TAB TO ALWAYS BE GOLD */
     .nav-link.dropdown-toggle,
     .nav-link.dropdown-toggle:hover,
     .nav-link.dropdown-toggle:focus,
@@ -42,18 +56,30 @@
     .nav-link.dropdown-toggle.active {
       color: var(--gold) !important;
     }
-    
-    /* Remove Bootstrap blue focus outline / shadow */
+
+    /* Remove Bootstrap blue outline/shadow */
     .nav-link.dropdown-toggle:focus,
     .nav-link.dropdown-toggle:active {
       box-shadow: none !important;
       outline: none !important;
     }
 
+    /* Dropdown menu styling */
+    .dropdown-menu {
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+    }
 
-      
+    .dropdown-item {
+      color: var(--text-main);
+    }
 
-    /* ===== Banner with Video Background ===== */
+    .dropdown-item:hover {
+      background-color: var(--bg-surface-2);
+      color: var(--gold);
+    }
+
+    /* ===== Banner ===== */
     .banner-header {
       position: relative;
       width: 100%;
@@ -92,32 +118,7 @@
       z-index: 2;
       width: 100%;
       max-width: 1400px;
-      height: auto;
       padding: clamp(12px, 2vw, 24px);
-    }
-
-    /* ===== Nav ===== */
-    nav {
-      background-color: var(--bg-surface) !important;
-      border-bottom: 1px solid var(--border-subtle) !important;
-    }
-
-    .nav-link { color: var(--text-muted); }
-    .nav-link.active,
-    .nav-link:hover { color: var(--gold); }
-
-    .dropdown-menu {
-      background-color: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-    }
-
-    .dropdown-item {
-      color: var(--text-main);
-    }
-
-    .dropdown-item:hover {
-      background-color: var(--bg-surface-2);
-      color: var(--gold);
     }
 
     /* ===== Hero ===== */
@@ -127,21 +128,6 @@
         rgba(212,175,55,0.08),
         rgba(18,18,18,0)
       );
-    }
-
-    /* ===== Cards ===== */
-    .card {
-      background-color: var(--bg-surface);
-      color: var(--text-main);
-    }
-
-    .card-hover {
-      transition: all 0.15s ease-in-out;
-    }
-
-    .card-hover:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 1rem 2rem rgba(0,0,0,0.6);
     }
 
     /* ===== Buttons ===== */
@@ -178,7 +164,7 @@
 
   <!-- Banner -->
   <header class="banner-header">
-    <video class="banner-video" autoplay muted loop playsinline preload="auto">
+    <video class="banner-video" autoplay muted loop playsinline>
       <source src="Detailvid.mp4" type="video/mp4">
     </video>
     <div class="banner-overlay"></div>
@@ -194,7 +180,6 @@
           <a class="nav-link active" href="index.html">Home</a>
         </li>
 
-        <!-- Services Dropdown -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle"
              href="#"
@@ -205,11 +190,10 @@
             Services
           </a>
 
-          <ul class="dropdown-menu dropdown-menu-dark text-center"
-              aria-labelledby="servicesDropdown">
-            <li><a class="dropdown-item" href="services.html#bronze">Gold Standard</a></li>
+          <ul class="dropdown-menu dropdown-menu-dark text-center">
+            <li><a class="dropdown-item" href="services.html#gold">Gold Standard</a></li>
             <li><a class="dropdown-item" href="services.html#silver">Silver Standard</a></li>
-            <li><a class="dropdown-item" href="services.html#gold">Bronze Standard</a></li>
+            <li><a class="dropdown-item" href="services.html#bronze">Bronze Standard</a></li>
 
             <li><hr class="dropdown-divider"></li>
 
@@ -237,18 +221,10 @@
   <!-- Hero -->
   <header class="hero py-5">
     <div class="container">
-      <div class="row align-items-center g-4">
-        <div class="col-12 col-lg-7">
-          <h1 class="display-5 fw-bold mb-3">Hi, I’m Thomas Holm.</h1>
-          <p class="lead text-secondary mb-4">
-            I build results through sales, recruiting, and data-driven decision making.
-          </p>
-          <div class="d-flex gap-2">
-            <a class="btn btn-primary btn-lg" href="services.html">View Services</a>
-            <a class="btn btn-outline-primary btn-lg" href="projects.html">Explore Projects</a>
-          </div>
-        </div>
-      </div>
+      <h1 class="display-5 fw-bold mb-3">Hi, I’m Thomas Holm.</h1>
+      <p class="lead text-secondary mb-4">
+        I build results through sales, recruiting, and data-driven decision making.
+      </p>
     </div>
   </header>
 
@@ -259,7 +235,7 @@
     </div>
   </footer>
 
-  <!-- Bootstrap JS (REQUIRED FOR DROPDOWN) -->
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
