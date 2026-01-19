@@ -32,20 +32,24 @@
     .text-secondary { color: var(--text-muted) !important; }
     a { color: var(--gold); }
     a:hover { color: var(--gold-muted); }
-    }
-        /* Keep Services nav link gold when dropdown is active/focused */
+
+    /* Keep Services nav link gold in ALL states */
     .nav-link.dropdown-toggle,
+    .nav-link.dropdown-toggle:hover,
     .nav-link.dropdown-toggle:focus,
     .nav-link.dropdown-toggle:active,
-    .nav-link.dropdown-toggle.show {
+    .nav-link.dropdown-toggle.show,
+    .nav-link.dropdown-toggle.active {
       color: var(--gold) !important;
     }
     
-    /* Remove blue focus outline / shadow */
-    .nav-link.dropdown-toggle:focus {
+    /* Remove Bootstrap blue focus outline / shadow */
+    .nav-link.dropdown-toggle:focus,
+    .nav-link.dropdown-toggle:active {
       box-shadow: none !important;
       outline: none !important;
     }
+
 
       
 
