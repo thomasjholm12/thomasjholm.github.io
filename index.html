@@ -14,18 +14,13 @@
   --text-main: #e6e6e6;
   --text-muted: #9e9e9e;
   --gold: #d4af37;
-
-  /* nav height variable */
-  --nav-height: 70px;
 }
-
-/* ================= GLOBAL ================= */
 
 body {
   margin: 0;
   background: var(--bg-main);
   color: var(--text-main);
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: system-ui, sans-serif;
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
@@ -68,44 +63,50 @@ body {
   position: relative;
   width: clamp(500px, 70vw, 1200px);
   transform: scale(1.2);
-  transition: transform .6s ease, top .6s ease, left .6s ease;
+  transition: 
+    transform .6s ease,
+    top .6s ease,
+    left .6s ease,
+    opacity .4s ease;
   z-index: 2;
 }
 
-/* on scroll transform */
+/* fade + shrink */
 .main-logo.shrink {
   position: fixed;
   transform-origin: top left;
+  opacity: 0.95;
   z-index: 2000;
 }
 
-/* desktop shrink target */
+/* Desktop */
 @media (min-width: 769px) {
   .main-logo.shrink {
-    top: calc(var(--nav-height) / 2 - 20px);
-    left: 20px;
     transform: scale(.35);
   }
 }
 
-/* mobile shrink center */
+/* Mobile */
 @media (max-width: 768px) {
   .main-logo {
     width: 85vw;
     transform: scale(1);
   }
+
   .main-logo.shrink {
-    top: 10px;
-    left: 50%;
     transform-origin: top center;
-    transform: translateX(-50%) scale(.55);
+    transform: scale(.55);
+  }
+
+  .navbar-collapse {
+    background: rgba(15,15,15,.98);
+    padding: 20px;
   }
 }
 
 /* ================= NAV ================= */
 
 .navbar {
-  --nav-height: 70px;
   position: fixed;
   width: 100%;
   top: 0;
@@ -118,9 +119,8 @@ body {
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
-  padding: 10px 0;
+  padding: 12px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
-  --nav-height: 50px; /* smaller nav height on scroll */
 }
 
 .nav-link {
@@ -139,13 +139,6 @@ body {
 
 .navbar-toggler:focus {
   box-shadow: none;
-}
-
-@media (max-width: 768px) {
-  .navbar-collapse {
-    background: rgba(15,15,15,.98);
-    padding: 20px;
-  }
 }
 
 /* ================= CONTENT ================= */
@@ -178,10 +171,6 @@ section {
   border: none;
 }
 
-.btn-gold:hover {
-  background: #c19b2c;
-}
-
 footer {
   background: var(--bg-surface);
   padding: 40px 0;
@@ -194,16 +183,14 @@ footer {
 
 <body>
 
-<!-- SPLASH -->
 <header class="splash">
   <video autoplay muted loop playsinline>
     <source src="Detailvid.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <img src="Banner.png" class="main-logo" id="mainLogo" alt="Gold Standard Logo">
+  <img src="Banner.png" class="main-logo" id="mainLogo" alt="Logo">
 </header>
 
-<!-- NAVBAR -->
 <nav id="mainNav" class="navbar navbar-expand-lg">
   <div class="container justify-content-end">
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -221,41 +208,14 @@ footer {
   </div>
 </nav>
 
-<!-- CONTENT -->
 <section>
   <div class="container text-center">
     <h2 class="section-title">Our Standards</h2>
-
-    <div class="row g-4">
-      <div class="col-md-4">
-        <div class="card p-4 h-100">
-          <h5>Gold Standard Detail</h5>
-          <p class="text-secondary">Complete interior & exterior correction.</p>
-          <button class="btn btn-gold mt-3">Learn More</button>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-4 h-100">
-          <h5>Interior Restoration</h5>
-          <p class="text-secondary">Deep cleaning and extraction.</p>
-          <button class="btn btn-gold mt-3">Learn More</button>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card p-4 h-100">
-          <h5>Exterior Protection</h5>
-          <p class="text-secondary">Paint correction and coating.</p>
-          <button class="btn btn-gold mt-3">Learn More</button>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
 <footer>
-  © <span id="year"></span> Gold Standard Detailing. All rights reserved.
+  © <span id="year"></span> Gold Standard Detailing.
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -264,15 +224,34 @@ footer {
 const nav = document.getElementById("mainNav");
 const logo = document.getElementById("mainLogo");
 
+function positionLogo() {
+  const navHeight = nav.offsetHeight;
+
+  if (window.innerWidth > 768) {
+    logo.style.top = navHeight / 2 + "px";
+    logo.style.left = "20px";
+  } else {
+    logo.style.top = navHeight / 2 + "px";
+    logo.style.left = "50%";
+    logo.style.transform = "translateX(-50%) scale(.55)";
+  }
+}
+
 window.addEventListener("scroll", () => {
   if (window.scrollY > 80) {
     nav.classList.add("scrolled");
     logo.classList.add("shrink");
+    positionLogo();
   } else {
     nav.classList.remove("scrolled");
     logo.classList.remove("shrink");
+    logo.style.top = "";
+    logo.style.left = "";
+    logo.style.transform = "";
   }
 });
+
+window.addEventListener("resize", positionLogo);
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
