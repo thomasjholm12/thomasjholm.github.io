@@ -57,50 +57,19 @@ body {
   z-index: 1;
 }
 
-/* ================= LOGO ================= */
+/* ================= HERO LOGO ================= */
 
-.main-logo {
+.hero-logo {
   position: relative;
   width: clamp(500px, 70vw, 1200px);
   transform: scale(1.2);
-  transition:
-    transform .6s ease,
-    top .6s ease,
-    left .6s ease,
-    opacity .4s ease;
+  transition: opacity .5s ease, transform .6s ease;
   z-index: 2;
 }
 
-/* Shrink state */
-.main-logo.shrink {
-  position: fixed;
-  top: 0;                /* hard attach to top */
-  left: 20px;            /* desktop default */
-  transform-origin: top left;
-  transform: scale(.35);
-  opacity: .95;
-  z-index: 2000;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 768px) {
-
-  .main-logo {
-    width: 85vw;
-    transform: scale(1);
-  }
-
-  .main-logo.shrink {
-    left: 50%;
-    transform-origin: top center;
-    transform: translateX(-50%) scale(.55);
-  }
-
-  .navbar-collapse {
-    background: rgba(15,15,15,.98);
-    padding: 20px;
-  }
+.hero-logo.fade-out {
+  opacity: 0;
+  transform: scale(.9);
 }
 
 /* ================= NAV ================= */
@@ -122,6 +91,17 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
+/* Nav logo */
+.nav-logo {
+  height: 45px;
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+
+.nav-logo.visible {
+  opacity: 1;
+}
+
 .nav-link {
   color: var(--text-muted) !important;
   font-weight: 500;
@@ -138,6 +118,25 @@ body {
 
 .navbar-toggler:focus {
   box-shadow: none;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .hero-logo {
+    width: 85vw;
+    transform: scale(1);
+  }
+
+  .navbar-collapse {
+    background: rgba(15,15,15,.98);
+    padding: 20px;
+  }
+
+  .nav-logo {
+    height: 38px;
+  }
 }
 
 /* ================= CONTENT ================= */
@@ -164,16 +163,23 @@ footer {
 
 <body>
 
+<!-- SPLASH -->
 <header class="splash">
   <video autoplay muted loop playsinline>
     <source src="Detailvid.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-  <img src="Banner.png" class="main-logo" id="mainLogo" alt="Logo">
+
+  <img src="Banner.png" class="hero-logo" id="heroLogo" alt="Hero Logo">
 </header>
 
+<!-- NAVBAR -->
 <nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container justify-content-end">
+  <div class="container d-flex justify-content-between align-items-center">
+
+    <!-- Nav Logo -->
+    <img src="nav-logo.png" class="nav-logo" id="navLogo" alt="Nav Logo">
+
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -186,6 +192,7 @@ footer {
         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
       </ul>
     </div>
+
   </div>
 </nav>
 
@@ -203,15 +210,18 @@ footer {
 
 <script>
 const nav = document.getElementById("mainNav");
-const logo = document.getElementById("mainLogo");
+const heroLogo = document.getElementById("heroLogo");
+const navLogo = document.getElementById("navLogo");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 80) {
     nav.classList.add("scrolled");
-    logo.classList.add("shrink");
+    heroLogo.classList.add("fade-out");
+    navLogo.classList.add("visible");
   } else {
     nav.classList.remove("scrolled");
-    logo.classList.remove("shrink");
+    heroLogo.classList.remove("fade-out");
+    navLogo.classList.remove("visible");
   }
 });
 
