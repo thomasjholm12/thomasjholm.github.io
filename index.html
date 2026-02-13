@@ -63,7 +63,7 @@ body {
   position: relative;
   width: clamp(500px, 70vw, 1200px);
   transform: scale(1.2);
-  transition: 
+  transition:
     transform .6s ease,
     top .6s ease,
     left .6s ease,
@@ -71,31 +71,38 @@ body {
   z-index: 2;
 }
 
-/* fade + shrink */
+/* Shrink state */
 .main-logo.shrink {
   position: fixed;
   transform-origin: top left;
-  opacity: 0.95;
+  opacity: .92;
   z-index: 2000;
 }
 
-/* Desktop */
+/* ===== DESKTOP ===== */
 @media (min-width: 769px) {
+
   .main-logo.shrink {
+    top: -10px;        /* clips into navbar */
+    left: 20px;
     transform: scale(.35);
   }
+
 }
 
-/* Mobile */
+/* ===== MOBILE ===== */
 @media (max-width: 768px) {
+
   .main-logo {
     width: 85vw;
     transform: scale(1);
   }
 
   .main-logo.shrink {
+    top: -6px;         /* slight clip into nav */
+    left: 50%;
     transform-origin: top center;
-    transform: scale(.55);
+    transform: translateX(-50%) scale(.55);
   }
 
   .navbar-collapse {
@@ -119,7 +126,7 @@ body {
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
-  padding: 12px 0;
+  padding: 10px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
@@ -171,6 +178,10 @@ section {
   border: none;
 }
 
+.btn-gold:hover {
+  background: #c19b2c;
+}
+
 footer {
   background: var(--bg-surface);
   padding: 40px 0;
@@ -193,6 +204,7 @@ footer {
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
   <div class="container justify-content-end">
+
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -205,6 +217,7 @@ footer {
         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
       </ul>
     </div>
+
   </div>
 </nav>
 
@@ -224,34 +237,15 @@ footer {
 const nav = document.getElementById("mainNav");
 const logo = document.getElementById("mainLogo");
 
-function positionLogo() {
-  const navHeight = nav.offsetHeight;
-
-  if (window.innerWidth > 768) {
-    logo.style.top = navHeight / 2 + "px";
-    logo.style.left = "20px";
-  } else {
-    logo.style.top = navHeight / 2 + "px";
-    logo.style.left = "50%";
-    logo.style.transform = "translateX(-50%) scale(.55)";
-  }
-}
-
 window.addEventListener("scroll", () => {
   if (window.scrollY > 80) {
     nav.classList.add("scrolled");
     logo.classList.add("shrink");
-    positionLogo();
   } else {
     nav.classList.remove("scrolled");
     logo.classList.remove("shrink");
-    logo.style.top = "";
-    logo.style.left = "";
-    logo.style.transform = "";
   }
 });
-
-window.addEventListener("resize", positionLogo);
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
