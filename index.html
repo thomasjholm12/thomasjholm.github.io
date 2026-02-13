@@ -43,7 +43,12 @@ body {
   height: 100%;
   object-fit: cover;
   filter: brightness(.45);
+  transition: filter .6s ease;
   z-index: 0;
+}
+
+.splash.dim video {
+  filter: brightness(.30);
 }
 
 .overlay {
@@ -63,13 +68,14 @@ body {
   position: relative;
   width: clamp(500px, 70vw, 1200px);
   transform: scale(1.2);
-  transition: opacity .5s ease, transform .6s ease;
+  opacity: 1;
+  transition: opacity .6s ease, transform .6s ease;
   z-index: 2;
 }
 
 .hero-logo.fade-out {
   opacity: 0;
-  transform: scale(.9);
+  transform: scale(.95);
 }
 
 /* ================= NAV ================= */
@@ -80,36 +86,63 @@ body {
   top: 0;
   background: transparent;
   padding: 25px 0;
-  transition: .4s ease;
+  transition: background .4s ease, padding .4s ease;
   z-index: 1000;
 }
 
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
-  padding: 10px 0;
+  padding: 12px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
 /* Nav logo */
 .nav-logo {
-  height: 45px;
+  height: 44px;
   opacity: 0;
-  transition: opacity .5s ease;
+  transform: translateY(-5px);
+  transition: opacity .5s ease .2s, transform .5s ease .2s;
 }
 
 .nav-logo.visible {
   opacity: 1;
+  transform: translateY(0);
+  animation: glowPulse 1.2s ease;
 }
 
+/* Glow pulse */
+@keyframes glowPulse {
+  0% { filter: drop-shadow(0 0 0px var(--gold)); }
+  50% { filter: drop-shadow(0 0 12px var(--gold)); }
+  100% { filter: drop-shadow(0 0 0px var(--gold)); }
+}
+
+/* Nav link underline */
 .nav-link {
+  position: relative;
   color: var(--text-muted) !important;
   font-weight: 500;
-  transition: .2s ease;
+  transition: color .2s ease;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: var(--gold);
+  transition: width .3s ease;
 }
 
 .nav-link:hover {
   color: var(--gold) !important;
+}
+
+.nav-link:hover::after {
+  width: 100%;
 }
 
 .navbar-toggler {
@@ -118,6 +151,19 @@ body {
 
 .navbar-toggler:focus {
   box-shadow: none;
+}
+
+/* ================= SCROLL REVEAL ================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ================= MOBILE ================= */
@@ -135,7 +181,7 @@ body {
   }
 
   .nav-logo {
-    height: 38px;
+    height: 36px;
   }
 }
 
@@ -149,6 +195,17 @@ section {
   font-size: 2.2rem;
   font-weight: 700;
   margin-bottom: 3rem;
+}
+
+.card {
+  background: var(--bg-surface);
+  border: 1px solid rgba(255,255,255,.06);
+  transition: .25s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1rem 2rem rgba(0,0,0,.6);
 }
 
 footer {
@@ -169,7 +226,6 @@ footer {
     <source src="Detailvid.mp4" type="video/mp4">
   </video>
   <div class="overlay"></div>
-
   <img src="Banner.png" class="hero-logo" id="heroLogo" alt="Hero Logo">
 </header>
 
@@ -177,7 +233,7 @@ footer {
 <nav id="mainNav" class="navbar navbar-expand-lg">
   <div class="container d-flex justify-content-between align-items-center">
 
-    <!-- Nav Logo -->
+    <!-- Simplified Logo -->
     <img src="Simple_banner.png" class="nav-logo" id="navLogo" alt="Nav Logo">
 
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
@@ -196,9 +252,32 @@ footer {
   </div>
 </nav>
 
-<section>
+<section class="reveal">
   <div class="container text-center">
     <h2 class="section-title">Our Standards</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4 reveal">
+        <div class="card p-4">
+          <h5>Gold Standard Detail</h5>
+          <p class="text-secondary">Complete interior & exterior correction.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 reveal">
+        <div class="card p-4">
+          <h5>Interior Restoration</h5>
+          <p class="text-secondary">Deep cleaning and extraction.</p>
+        </div>
+      </div>
+
+      <div class="col-md-4 reveal">
+        <div class="card p-4">
+          <h5>Exterior Protection</h5>
+          <p class="text-secondary">Paint correction and coating.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -212,17 +291,30 @@ footer {
 const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
 const navLogo = document.getElementById("navLogo");
+const splash = document.querySelector(".splash");
+const reveals = document.querySelectorAll(".reveal");
 
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 80) {
+  const scrollY = window.scrollY;
+
+  if (scrollY > 80) {
     nav.classList.add("scrolled");
     heroLogo.classList.add("fade-out");
     navLogo.classList.add("visible");
+    splash.classList.add("dim");
   } else {
     nav.classList.remove("scrolled");
     heroLogo.classList.remove("fade-out");
     navLogo.classList.remove("visible");
+    splash.classList.remove("dim");
   }
+
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
