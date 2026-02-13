@@ -48,9 +48,9 @@
       );
       z-index: 1;
     }
-
-    /* ===== LOGO (START STATE) ===== */
-        .main-logo {
+    
+        /* ===== LOGO (START STATE) ===== */
+    .main-logo {
       position: fixed;
       top: 50%;
       left: 50%;
@@ -60,7 +60,7 @@
       z-index: 2000;
     }
     
-    /* Final anchored position */
+    /* Final anchored position — TRUE top-left */
     .main-logo.shrink {
       top: 0;
       left: 0;
@@ -92,15 +92,6 @@
     .nav-link:hover {
       color: var(--gold) !important;
     }
-
-    /* ===== LOGO SHRINKED STATE ===== */
-    .main-logo.shrink {
-      top: 20px;
-      left: 40px;
-      transform: translate(0, 0) scale(0.35);
-      width: auto;
-    }
-
     /* ===== CONTENT ===== */
     section {
       padding: 120px 0;
