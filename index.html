@@ -85,7 +85,7 @@ body {
   width: 100%;
   top: 0;
   background: transparent;
-  padding: 35px 0;  /* slightly taller */
+  padding: 40px 0;
   transition: background .4s ease, padding .4s ease;
   z-index: 1000;
 }
@@ -93,32 +93,33 @@ body {
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
-  padding: 20px 0;
+  padding: 25px 0;
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* Larger nav logo */
+/* Container relative so logo can position inside */
+.navbar .container {
+  position: relative;
+}
+
+/* BIG NAV LOGO */
 .nav-logo {
-  height: 120px;  /* 3x larger */
+  position: absolute;
+  top: 50%;
+  left: 40px;  /* desktop left */
+  transform: translateY(-50%);
+  height: 180px;  /* bigger than before */
   opacity: 0;
-  transform: translateY(-5px);
-  transition: opacity .5s ease .2s, transform .5s ease .2s;
+  transition: opacity .6s ease, transform .6s ease;
+  pointer-events: none;
 }
 
 .nav-logo.visible {
   opacity: 1;
-  transform: translateY(0);
-  animation: glowPulse 1.2s ease;
+  transform: translateY(-50%) scale(1);
 }
 
-/* Glow pulse */
-@keyframes glowPulse {
-  0% { filter: drop-shadow(0 0 0px var(--gold)); }
-  50% { filter: drop-shadow(0 0 12px var(--gold)); }
-  100% { filter: drop-shadow(0 0 0px var(--gold)); }
-}
-
-/* Nav link underline animation */
+/* NAV LINKS */
 .nav-link {
   position: relative;
   color: var(--text-muted) !important;
@@ -145,27 +146,6 @@ body {
   width: 100%;
 }
 
-.navbar-toggler {
-  border: none;
-}
-
-.navbar-toggler:focus {
-  box-shadow: none;
-}
-
-/* ================= SCROLL REVEAL ================= */
-
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity .8s ease, transform .8s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
@@ -175,13 +155,23 @@ body {
     transform: scale(1);
   }
 
-  .navbar-collapse {
-    background: rgba(15,15,15,.98);
-    padding: 20px;
+  .navbar {
+    padding: 30px 0;
+  }
+
+  .navbar.scrolled {
+    padding: 20px 0;
   }
 
   .nav-logo {
-    height: 70px;  /* scaled down for mobile */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 110px;  /* big but mobile-friendly */
+  }
+
+  .navbar-collapse {
+    background: rgba(15,15,15,.98);
+    padding: 20px;
   }
 }
 
@@ -197,17 +187,6 @@ section {
   margin-bottom: 3rem;
 }
 
-.card {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255,255,255,.06);
-  transition: .25s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.6);
-}
-
 footer {
   background: var(--bg-surface);
   padding: 40px 0;
@@ -220,7 +199,6 @@ footer {
 
 <body>
 
-<!-- SPLASH -->
 <header class="splash">
   <video autoplay muted loop playsinline>
     <source src="Detailvid.mp4" type="video/mp4">
@@ -229,18 +207,18 @@ footer {
   <img src="Banner.png" class="hero-logo" id="heroLogo" alt="Hero Logo">
 </header>
 
-<!-- NAVBAR -->
 <nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container d-flex justify-content-between align-items-center">
+  <div class="container d-flex justify-content-end align-items-center">
 
+    <!-- Big Nav Logo -->
     <img src="Simple_banner.png" class="nav-logo" id="navLogo" alt="Nav Logo">
 
-    <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button class="navbar-toggler text-light ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav gap-lg-4 text-center">
+      <ul class="navbar-nav gap-lg-4 text-center ms-auto">
         <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
@@ -251,32 +229,9 @@ footer {
   </div>
 </nav>
 
-<section class="reveal">
+<section>
   <div class="container text-center">
     <h2 class="section-title">Our Standards</h2>
-
-    <div class="row g-4">
-      <div class="col-md-4 reveal">
-        <div class="card p-4">
-          <h5>Gold Standard Detail</h5>
-          <p class="text-secondary">Complete interior & exterior correction.</p>
-        </div>
-      </div>
-
-      <div class="col-md-4 reveal">
-        <div class="card p-4">
-          <h5>Interior Restoration</h5>
-          <p class="text-secondary">Deep cleaning and extraction.</p>
-        </div>
-      </div>
-
-      <div class="col-md-4 reveal">
-        <div class="card p-4">
-          <h5>Exterior Protection</h5>
-          <p class="text-secondary">Paint correction and coating.</p>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -291,12 +246,9 @@ const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
 const navLogo = document.getElementById("navLogo");
 const splash = document.querySelector(".splash");
-const reveals = document.querySelectorAll(".reveal");
 
 window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY;
-
-  if (scrollY > 80) {
+  if (window.scrollY > 80) {
     nav.classList.add("scrolled");
     heroLogo.classList.add("fade-out");
     navLogo.classList.add("visible");
@@ -307,13 +259,6 @@ window.addEventListener("scroll", () => {
     navLogo.classList.remove("visible");
     splash.classList.remove("dim");
   }
-
-  reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
-      el.classList.add("active");
-    }
-  });
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
