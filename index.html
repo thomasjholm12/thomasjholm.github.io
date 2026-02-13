@@ -74,23 +74,16 @@ body {
 /* Shrink state */
 .main-logo.shrink {
   position: fixed;
+  top: 0;                /* hard attach to top */
+  left: 20px;            /* desktop default */
   transform-origin: top left;
-  opacity: .92;
+  transform: scale(.35);
+  opacity: .95;
   z-index: 2000;
 }
 
-/* ===== DESKTOP ===== */
-@media (min-width: 769px) {
+/* ================= MOBILE ================= */
 
-  .main-logo.shrink {
-    top: -10px;        /* clips into navbar */
-    left: 20px;
-    transform: scale(.35);
-  }
-
-}
-
-/* ===== MOBILE ===== */
 @media (max-width: 768px) {
 
   .main-logo {
@@ -99,7 +92,6 @@ body {
   }
 
   .main-logo.shrink {
-    top: -6px;         /* slight clip into nav */
     left: 50%;
     transform-origin: top center;
     transform: translateX(-50%) scale(.55);
@@ -160,28 +152,6 @@ section {
   margin-bottom: 3rem;
 }
 
-.card {
-  background: var(--bg-surface);
-  border: 1px solid rgba(255,255,255,.06);
-  transition: .25s ease;
-}
-
-.card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 1rem 2rem rgba(0,0,0,.6);
-}
-
-.btn-gold {
-  background: var(--gold);
-  color: #000;
-  font-weight: 600;
-  border: none;
-}
-
-.btn-gold:hover {
-  background: #c19b2c;
-}
-
 footer {
   background: var(--bg-surface);
   padding: 40px 0;
@@ -204,7 +174,6 @@ footer {
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
   <div class="container justify-content-end">
-
     <button class="navbar-toggler text-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -217,7 +186,6 @@ footer {
         <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
       </ul>
     </div>
-
   </div>
 </nav>
 
