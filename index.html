@@ -50,14 +50,21 @@
     }
 
     /* ===== LOGO (START STATE) ===== */
-    .main-logo {
+        .main-logo {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%) scale(1.4);
-      width: clamp(400px, 70vw, 1200px);
+      width: clamp(500px, 75vw, 1400px);
       transition: all 0.6s ease;
       z-index: 2000;
+    }
+    
+    /* Final anchored position */
+    .main-logo.shrink {
+      top: 0;
+      left: 0;
+      transform: translate(20px, 20px) scale(0.35);
     }
 
     /* ===== NAV ===== */
