@@ -90,18 +90,18 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* Logo anchored to navbar (not container) */
+/* LOGO IS NOW FIXED TO VIEWPORT — NOT NAVBAR */
 .nav-logo {
-  position: absolute;
-  top: 50%;
-  left: 50px;  /* desktop left */
+  position: fixed;
+  top: 20px;  /* fixed from top of screen */
+  left: 50px; /* desktop left */
   height: 70px;
-  transform: translateY(-50%) scale(3); /* visually huge */
-  transform-origin: left center;
+  transform: scale(3);
+  transform-origin: left top;
   opacity: 0;
   transition: opacity .6s ease;
   pointer-events: none;
-  z-index: 10;
+  z-index: 1100;
 }
 
 .nav-logo.visible {
@@ -154,17 +154,16 @@ body {
 
   .nav-logo {
     left: 50%;
-    top: 50%;
+    top: 18px;
     height: 60px;
-    transform: translate(-50%, -50%) scale(2.5);
-    transform-origin: center center;
+    transform: translateX(-50%) scale(2.5);
+    transform-origin: top center;
   }
 
   .navbar-collapse {
     background: rgba(15,15,15,.98);
     padding: 20px;
   }
-
 }
 
 /* ================= CONTENT ================= */
@@ -194,14 +193,12 @@ footer {
 </header>
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
-
-  <!-- BIG NAV LOGO -->
-  <img src="Simple_banner.png" class="nav-logo" id="navLogo" alt="Nav Logo">
-
   <div class="container d-flex justify-content-end align-items-center">
 
-    <button class="navbar-toggler text-light ms-auto" type="button"
-            data-bs-toggle="collapse" data-bs-target="#navMenu">
+    <button class="navbar-toggler text-light ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -216,6 +213,9 @@ footer {
 
   </div>
 </nav>
+
+<!-- FIXED LOGO OUTSIDE NAV -->
+<img src="Simple_banner.png" class="nav-logo" id="navLogo" alt="Nav Logo">
 
 <section>
   <div class="container text-center">
@@ -249,7 +249,8 @@ window.addEventListener("scroll", () => {
   }
 });
 
-document.getElementById("year").textContent = new Date().getFullYear();
+document.getElementById("year").textContent =
+  new Date().getFullYear();
 </script>
 
 </body>
