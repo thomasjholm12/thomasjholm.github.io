@@ -85,7 +85,9 @@ body {
   z-index: 1000;
 }
 
-.navbar.visible { transform: translateY(0); }
+.navbar.visible {
+  transform: translateY(0);
+}
 
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
@@ -93,67 +95,69 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* ================= LOGO ================= */
+/* LOGO */
 
 .nav-logo-wrapper {
-  position: fixed;
+  position: absolute;
   left: 40px;
-  top: -15px;   /* PUSHED UP 30px */
+  top: -15px; /* pushed up 30px */
   z-index: 1100;
-
   opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity .4s ease, transform .4s ease;
+  transition: opacity .4s ease;
 }
 
-.navbar.visible ~ .nav-logo-wrapper {
+.navbar.visible .nav-logo-wrapper {
   opacity: 1;
-  transform: translateY(0);
 }
 
 #navLogo {
   height: 90px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE CENTERING */
 
 @media (max-width: 991px) {
   .nav-logo-wrapper {
     left: 50%;
-    top: -15px;
-    transform: translate(-50%, -20px);
-  }
-
-  .navbar.visible ~ .nav-logo-wrapper {
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
   }
 }
 
-/* ================= MOBILE MENU ================= */
+/* COLLAPSE */
 
 .mobile-menu {
-  position: fixed;
+  position: absolute;
   top: 90px;
   left: 0;
   width: 100%;
   background: rgba(15,15,15,.98);
   padding: 25px 0;
-  z-index: 999;
 }
+
+/* LINKS */
 
 .nav-link {
   color: var(--text-muted) !important;
   font-weight: 500;
 }
 
-.nav-link:hover { color: var(--gold) !important; }
+.nav-link:hover {
+  color: var(--gold) !important;
+}
 
-.navbar-toggler { border: none; }
-.navbar-toggler:focus { box-shadow: none; }
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
 
 /* ================= SERVICES ================= */
 
-.services-preview { padding: 120px 0; }
+.services-preview {
+  padding: 120px 0;
+}
 
 .service-card {
   background: var(--bg-card);
@@ -174,9 +178,13 @@ body {
   object-fit: cover;
 }
 
-.service-content { padding: 25px; }
+.service-content {
+  padding: 25px;
+}
 
-.service-content h5 { color: var(--gold); }
+.service-content h5 {
+  color: var(--gold);
+}
 
 .service-content p {
   color: var(--text-muted);
@@ -194,7 +202,9 @@ body {
   transition: transform .2s ease;
 }
 
-.gold-btn:hover { transform: scale(1.05); }
+.gold-btn:hover {
+  transform: scale(1.05);
+}
 
 footer {
   background: #1a1a1a;
@@ -216,27 +226,29 @@ footer {
 </header>
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container d-flex justify-content-end align-items-center h-100">
+  <div class="container position-relative d-flex justify-content-end align-items-center h-100">
+
+    <a href="index.html" class="nav-logo-wrapper">
+      <img src="Simple_banner.png" id="navLogo" alt="Logo">
+    </a>
+
     <button class="navbar-toggler ms-auto" type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <div class="collapse navbar-collapse mobile-menu" id="navMenu">
+      <ul class="navbar-nav text-center ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+
   </div>
 </nav>
-
-<a href="index.html" class="nav-logo-wrapper">
-  <img src="Simple_banner.png" id="navLogo" alt="Logo">
-</a>
-
-<div class="collapse navbar-collapse mobile-menu" id="navMenu">
-  <ul class="navbar-nav text-center">
-    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-  </ul>
-</div>
 
 <section class="services-preview">
   <div class="container text-center mb-5">
