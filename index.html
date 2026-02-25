@@ -82,9 +82,12 @@ body {
 
 .navbar {
   position: fixed;
-  width: 100%;
   top: 0;
-  padding: 20px 0;
+  width: 100%;
+  height: 90px;            /* HARD LOCKED */
+  min-height: 90px;
+  max-height: 90px;
+  overflow: visible;       /* Important */
   background: transparent;
   transform: translateY(-100%);
   transition: transform .4s ease, background .4s ease, backdrop-filter .4s ease;
@@ -101,21 +104,20 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* Logo anchored independently */
+/* LOGO — anchored from top now (NOT centered) */
 
 .nav-logo-wrapper {
   position: absolute;
   left: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 15px;              /* FIXED DISTANCE FROM TOP */
   z-index: 1100;
 }
 
 #navLogo {
-  height: 60px; /* Original normal size */
+  height: 60px;
 }
 
-/* Nav links */
+/* NAV LINKS */
 
 .nav-link {
   color: var(--text-muted) !important;
@@ -126,19 +128,35 @@ body {
   color: var(--gold) !important;
 }
 
-/* Mobile layout */
+/* HAMBURGER */
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ================= MOBILE ================= */
 
 @media (max-width: 991px) {
 
+  /* Center logo horizontally but keep fixed top */
   .nav-logo-wrapper {
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    top: 15px;
   }
 
+  /* CRITICAL: collapse no longer changes navbar height */
   .navbar-collapse {
+    position: absolute;
+    top: 90px;          /* EXACT navbar height */
+    left: 0;
+    width: 100%;
     background: rgba(15,15,15,.98);
-    margin-top: 15px;
-    padding: 20px 0;
+    padding: 25px 0;
   }
 
 }
