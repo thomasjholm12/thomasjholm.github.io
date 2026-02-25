@@ -84,7 +84,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  padding: 20px 0;
+  padding: 50px 0;
   background: transparent;
   transform: translateY(-100%);
   transition: transform .4s ease, background .4s ease, backdrop-filter .4s ease;
@@ -101,9 +101,22 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-#navLogo {
-  height: 55px;
+/* LOGO WRAPPER */
+
+.nav-logo-wrapper {
+  position: absolute;
+  left: 50px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1100;
 }
+
+#navLogo {
+  height: 220px; /* 4x bigger */
+  pointer-events: none;
+}
+
+/* NAV LINKS */
 
 .nav-link {
   color: var(--text-muted) !important;
@@ -114,8 +127,11 @@ body {
   color: var(--gold) !important;
 }
 
+/* HAMBURGER */
+
 .navbar-toggler {
   border: none;
+  z-index: 1200;
 }
 
 .navbar-toggler:focus {
@@ -126,18 +142,24 @@ body {
 
 @media (max-width: 991px) {
 
-  .navbar-brand {
-    position: absolute;
+  .navbar {
+    padding: 70px 0;
+  }
+
+  .nav-logo-wrapper {
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
+  }
+
+  #navLogo {
+    height: 180px;
   }
 
   .navbar-collapse {
     background: rgba(15,15,15,.98);
-    margin-top: 15px;
-    padding: 20px 0;
+    margin-top: 40px;
+    padding: 30px 0;
   }
-
 }
 
 /* ================= SERVICES ================= */
@@ -214,9 +236,9 @@ footer {
 </header>
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container d-flex align-items-center position-relative">
+  <div class="container position-relative d-flex align-items-center">
 
-    <a class="navbar-brand" href="index.html">
+    <a href="index.html" class="nav-logo-wrapper">
       <img src="Simple_banner.png" id="navLogo" alt="Logo">
     </a>
 
@@ -244,44 +266,8 @@ footer {
     <p class="text-muted">Crafted for those who expect more.</p>
   </div>
 
-  <div class="container">
-    <div class="row g-4">
-
-      <div class="col-lg-4">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9" alt="">
-          <div class="service-content">
-            <h5>Interior Detail</h5>
-            <p>Steam cleaning, leather conditioning, trim restoration, and full cabin reset.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" alt="">
-          <div class="service-content">
-            <h5>Exterior Detail</h5>
-            <p>Foam pre-soak, hand wash, clay bar treatment, premium wax protection.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8" alt="">
-          <div class="service-content">
-            <h5>Gold Standard Service</h5>
-            <p>Complete interior & exterior refinement with extended protection.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="text-center mt-5">
-      <a href="services.html" class="gold-btn">View All Services</a>
-    </div>
+  <div class="container text-center mt-5">
+    <a href="services.html" class="gold-btn">View All Services</a>
   </div>
 </section>
 
@@ -329,18 +315,15 @@ function startVideo(video, src) {
 
 function switchVideo() {
   currentIndex = (currentIndex + 1) % videoSources.length;
-
   startVideo(nextVideo, videoSources[currentIndex]);
   activeVideo.classList.add("transitioning");
 
   setTimeout(() => {
     activeVideo.classList.remove("active", "transitioning");
     nextVideo.classList.add("active");
-
     let temp = activeVideo;
     activeVideo = nextVideo;
     nextVideo = temp;
-
   }, 800);
 }
 
