@@ -35,18 +35,14 @@ body {
   justify-content: center;
 }
 
-/* VIDEO LAYERS */
-
 .splash video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-
   filter: brightness(.35) grayscale(100%) contrast(120%) blur(4px);
   transition: opacity 1.6s ease, filter 1.6s ease;
-
   opacity: 0;
   z-index: 1;
 }
@@ -73,8 +69,8 @@ body {
 .hero-logo {
   position: relative;
   width: clamp(500px, 70vw, 1200px);
-  transition: opacity .6s ease, transform .6s ease;
   z-index: 3;
+  transition: opacity .6s ease, transform .6s ease;
 }
 
 .hero-logo.fade-out {
@@ -88,7 +84,7 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  padding: 25px 0;
+  padding: 20px 0;
   background: transparent;
   transform: translateY(-100%);
   transition: transform .4s ease, background .4s ease, backdrop-filter .4s ease;
@@ -105,12 +101,43 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
+#navLogo {
+  height: 55px;
+}
+
 .nav-link {
   color: var(--text-muted) !important;
+  font-weight: 500;
 }
 
 .nav-link:hover {
   color: var(--gold) !important;
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 991px) {
+
+  .navbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .navbar-collapse {
+    background: rgba(15,15,15,.98);
+    margin-top: 15px;
+    padding: 20px 0;
+  }
+
 }
 
 /* ================= SERVICES ================= */
@@ -144,7 +171,6 @@ body {
 
 .service-content h5 {
   color: var(--gold);
-  margin-bottom: 10px;
 }
 
 .service-content p {
@@ -168,8 +194,6 @@ body {
   color: #000;
 }
 
-/* ================= FOOTER ================= */
-
 footer {
   background: #1a1a1a;
   padding: 40px 0;
@@ -190,13 +214,27 @@ footer {
 </header>
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container justify-content-end">
-    <ul class="navbar-nav gap-4">
-      <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-    </ul>
+  <div class="container d-flex align-items-center position-relative">
+
+    <a class="navbar-brand" href="index.html">
+      <img src="Simple_banner.png" id="navLogo" alt="Logo">
+    </a>
+
+    <button class="navbar-toggler ms-auto" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-lg-4 text-center ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+
   </div>
 </nav>
 
@@ -211,7 +249,7 @@ footer {
 
       <div class="col-lg-4">
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9" alt="Interior Detail">
+          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9" alt="">
           <div class="service-content">
             <h5>Interior Detail</h5>
             <p>Steam cleaning, leather conditioning, trim restoration, and full cabin reset.</p>
@@ -221,7 +259,7 @@ footer {
 
       <div class="col-lg-4">
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" alt="Exterior Detail">
+          <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" alt="">
           <div class="service-content">
             <h5>Exterior Detail</h5>
             <p>Foam pre-soak, hand wash, clay bar treatment, premium wax protection.</p>
@@ -231,7 +269,7 @@ footer {
 
       <div class="col-lg-4">
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8" alt="Gold Standard Service">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8" alt="">
           <div class="service-content">
             <h5>Gold Standard Service</h5>
             <p>Complete interior & exterior refinement with extended protection.</p>
@@ -267,7 +305,7 @@ window.addEventListener("scroll", () => {
   }
 });
 
-/* VIDEO CROSSFADE SYSTEM */
+/* VIDEO CROSSFADE */
 
 const videoSources = [
   "6159201-hd_1920_1080_30fps.mp4",
