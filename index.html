@@ -74,79 +74,44 @@ body {
 
 /* ================= NAV ================= */
 
-.navbar {
-  position: fixed;
-  top: 0;
-  width: 100%;
+#mainNav {
   height: 90px;
   background: transparent;
-  transform: translateY(-100%);
-  transition: transform .4s ease, background .4s ease;
-  z-index: 1000;
+  transition: background .4s ease, box-shadow .4s ease;
 }
 
-.navbar.visible { transform: translateY(0); }
-
-.navbar.scrolled {
+#mainNav.scrolled {
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* LOGO */
-
-.nav-logo-wrapper {
-  position: absolute;
-  left: 40px;
-  top: -15px; /* pushed up 30px */
-  z-index: 1100;
-  opacity: 0;
-  transition: opacity .4s ease;
+.navbar-brand img {
+  transform: translateY(-15px); /* visual 30px lift */
 }
-
-.navbar.visible .nav-logo-wrapper {
-  opacity: 1;
-}
-
-#navLogo {
-  height: 90px;
-}
-
-/* MOBILE */
-
-@media (max-width: 991px) {
-  .nav-logo-wrapper {
-    left: 50%;
-    transform: translateX(-50%);
-  }
-}
-
-/* COLLAPSE */
-
-.mobile-menu {
-  position: absolute;
-  top: 90px;
-  left: 0;
-  width: 100%;
-  background: rgba(15,15,15,.98);
-  padding: 25px 0;
-}
-
-/* LINKS */
 
 .nav-link {
   color: var(--text-muted) !important;
   font-weight: 500;
 }
 
-.nav-link:hover { color: var(--gold) !important; }
+.nav-link:hover {
+  color: var(--gold) !important;
+}
 
-.navbar-toggler { border: none; }
-.navbar-toggler:focus { box-shadow: none; }
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
 
 /* ================= SERVICES ================= */
 
-.services-preview { padding: 120px 0; }
+.services-preview {
+  padding: 120px 0;
+}
 
 .service-card {
   background: var(--bg-card);
@@ -167,9 +132,13 @@ body {
   object-fit: cover;
 }
 
-.service-content { padding: 25px; }
+.service-content {
+  padding: 25px;
+}
 
-.service-content h5 { color: var(--gold); }
+.service-content h5 {
+  color: var(--gold);
+}
 
 .service-content p {
   color: var(--text-muted);
@@ -187,7 +156,9 @@ body {
   transition: transform .2s ease;
 }
 
-.gold-btn:hover { transform: scale(1.05); }
+.gold-btn:hover {
+  transform: scale(1.05);
+}
 
 footer {
   background: #1a1a1a;
@@ -208,21 +179,21 @@ footer {
   <img src="Banner.png" class="hero-logo" id="heroLogo" alt="Hero Logo">
 </header>
 
-<nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container position-relative d-flex justify-content-end align-items-center h-100">
+<nav id="mainNav" class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
 
-    <a href="index.html" class="nav-logo-wrapper">
-      <img src="Simple_banner.png" id="navLogo" alt="Logo">
+    <a class="navbar-brand" href="index.html">
+      <img src="Simple_banner.png" height="70" alt="Logo">
     </a>
 
-    <button class="navbar-toggler ms-auto" type="button"
+    <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse mobile-menu" id="navMenu">
-      <ul class="navbar-nav text-center ms-auto">
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-lg-4 text-center">
         <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
         <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
@@ -287,22 +258,20 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-/* ================= NAV SCROLL EFFECT ================= */
-
 const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 50) {
-    nav.classList.add("visible", "scrolled");
+    nav.classList.add("scrolled");
     heroLogo.classList.add("fade-out");
   } else {
-    nav.classList.remove("visible", "scrolled");
+    nav.classList.remove("scrolled");
     heroLogo.classList.remove("fade-out");
   }
 });
 
-/* ================= VIDEO CROSSFADE ================= */
+/* VIDEO CROSSFADE */
 
 const videoSources = [
   "6159201-hd_1920_1080_30fps.mp4",
@@ -314,42 +283,35 @@ const videoSources = [
 const videoA = document.getElementById("videoA");
 const videoB = document.getElementById("videoB");
 
-if (videoA && videoB) {
+let currentIndex = 0;
+let activeVideo = videoA;
+let nextVideo = videoB;
 
-  let currentIndex = 0;
-  let activeVideo = videoA;
-  let nextVideo = videoB;
-
-  function startVideo(video, src) {
-    video.src = src;
-    video.load();
-    video.play().catch(() => {});
-  }
-
-  function switchVideo() {
-    currentIndex = (currentIndex + 1) % videoSources.length;
-
-    startVideo(nextVideo, videoSources[currentIndex]);
-    activeVideo.classList.add("transitioning");
-
-    setTimeout(() => {
-      activeVideo.classList.remove("active", "transitioning");
-      nextVideo.classList.add("active");
-
-      let temp = activeVideo;
-      activeVideo = nextVideo;
-      nextVideo = temp;
-    }, 800);
-  }
-
-  startVideo(videoA, videoSources[currentIndex]);
-  videoA.classList.add("active");
-
-  videoA.addEventListener("ended", switchVideo);
-  videoB.addEventListener("ended", switchVideo);
+function startVideo(video, src) {
+  video.src = src;
+  video.load();
+  video.play().catch(() => {});
 }
 
-/* ================= FOOTER YEAR ================= */
+function switchVideo() {
+  currentIndex = (currentIndex + 1) % videoSources.length;
+  startVideo(nextVideo, videoSources[currentIndex]);
+  activeVideo.classList.add("transitioning");
+
+  setTimeout(() => {
+    activeVideo.classList.remove("active", "transitioning");
+    nextVideo.classList.add("active");
+    let temp = activeVideo;
+    activeVideo = nextVideo;
+    nextVideo = temp;
+  }, 800);
+}
+
+startVideo(videoA, videoSources[currentIndex]);
+videoA.classList.add("active");
+
+videoA.addEventListener("ended", switchVideo);
+videoB.addEventListener("ended", switchVideo);
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
