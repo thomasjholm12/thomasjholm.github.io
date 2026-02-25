@@ -106,15 +106,34 @@ body {
 
 /* LOGO — anchored from top now (NOT centered) */
 
+/* LOGO — DESKTOP */
+
 .nav-logo-wrapper {
   position: absolute;
   left: 40px;
-  top: 15px;              /* FIXED DISTANCE FROM TOP */
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 1100;
 }
 
 #navLogo {
-  height: 60px;
+  height: 90px;   /* Bigger */
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 991px) {
+
+  .nav-logo-wrapper {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #navLogo {
+    height: 100px;   /* Slightly larger on mobile */
+  }
+
 }
 
 /* NAV LINKS */
@@ -136,29 +155,6 @@ body {
 
 .navbar-toggler:focus {
   box-shadow: none;
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 991px) {
-
-  /* Center logo horizontally but keep fixed top */
-  .nav-logo-wrapper {
-    left: 50%;
-    transform: translateX(-50%);
-    top: 15px;
-  }
-
-  /* CRITICAL: collapse no longer changes navbar height */
-  .navbar-collapse {
-    position: absolute;
-    top: 90px;          /* EXACT navbar height */
-    left: 0;
-    width: 100%;
-    background: rgba(15,15,15,.98);
-    padding: 25px 0;
-  }
-
 }
 
 /* ================= SERVICES ================= */
