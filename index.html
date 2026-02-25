@@ -41,12 +41,12 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(.45);
+  filter: brightness(.35) grayscale(100%) contrast(120%) blur(4px);
   transition: filter .6s ease;
 }
 
 .splash.dim video {
-  filter: brightness(.3);
+  filter: brightness(.25) grayscale(100%) contrast(130%) blur(5px);
 }
 
 .overlay {
@@ -167,9 +167,7 @@ footer {
 <body>
 
 <header class="splash">
-  <video autoplay muted loop playsinline>
-    <source src="Detailvid.mp4" type="video/mp4">
-  </video>
+  <video id="bgVideo" autoplay muted playsinline></video>
   <div class="overlay"></div>
   <img src="Banner.png" class="hero-logo" id="heroLogo" alt="Hero Logo">
 </header>
@@ -185,52 +183,14 @@ footer {
   </div>
 </nav>
 
-<!-- SERVICES PREVIEW -->
-
 <section class="services-preview">
   <div class="container text-center mb-5">
     <h2 class="display-5 fw-bold">Premium Detailing Services</h2>
     <p class="text-muted">Crafted for those who expect more.</p>
   </div>
 
-  <div class="container">
-    <div class="row g-4">
-
-      <div class="col-lg-4">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1771491237209-b89bc7290588?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Interior Detailing">
-          <div class="service-content">
-            <h5>Interior Detail</h5>
-            <p class="text-muted">Deep cleaning, steam extraction, leather conditioning, and full cabin reset.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9" alt="Exterior Detailing">
-          <div class="service-content">
-            <h5>Exterior Detail</h5>
-            <p class="text-muted">Foam bath, clay bar, premium wax sealant, and full wheel restoration.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-4">
-        <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8" alt="Luxury Car Detailing">
-          <div class="service-content">
-            <h5>Gold Standard Service</h5>
-            <p class="text-muted">Complete interior & exterior refinement with extended protection.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="text-center mt-5">
-      <a href="services.html" class="gold-btn">View All Services</a>
-    </div>
+  <div class="container text-center mt-5">
+    <a href="services.html" class="gold-btn">View All Services</a>
   </div>
 </section>
 
@@ -244,7 +204,32 @@ footer {
 const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
 const splash = document.querySelector(".splash");
+const videoElement = document.getElementById("bgVideo");
 
+/* ROTATING VIDEO SOURCES */
+const videoSources = [
+  "6159201-hd_1920_1080_30fps.mp4",
+  "6159207-hd_1920_1080_30fps.mp4",
+  "6158070-hd_1920_1080_30fps.mp4",
+  "6157787-hd_1920_1080_30fps.mp4"
+];
+
+let currentVideo = 0;
+
+function loadVideo(index) {
+  videoElement.src = videoSources[index];
+  videoElement.play();
+}
+
+videoElement.addEventListener("ended", () => {
+  currentVideo = (currentVideo + 1) % videoSources.length;
+  loadVideo(currentVideo);
+});
+
+/* Start first video */
+loadVideo(currentVideo);
+
+/* NAV SCROLL BEHAVIOR */
 window.addEventListener("scroll", () => {
 
   if (window.scrollY > 50) {
