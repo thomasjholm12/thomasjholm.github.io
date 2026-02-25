@@ -289,16 +289,16 @@ footer {
 <script>
 /* ================= NAV SCROLL EFFECT ================= */
 
-const desktopNav = document.getElementById("desktopNav");
+const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
 
 window.addEventListener("scroll", () => {
   if (window.scrollY > 50) {
-    if (desktopNav) desktopNav.classList.add("scrolled");
-    if (heroLogo) heroLogo.classList.add("fade-out");
+    nav.classList.add("visible", "scrolled");
+    heroLogo.classList.add("fade-out");
   } else {
-    if (desktopNav) desktopNav.classList.remove("scrolled");
-    if (heroLogo) heroLogo.classList.remove("fade-out");
+    nav.classList.remove("visible", "scrolled");
+    heroLogo.classList.remove("fade-out");
   }
 });
 
@@ -351,10 +351,7 @@ if (videoA && videoB) {
 
 /* ================= FOOTER YEAR ================= */
 
-const yearSpan = document.getElementById("year");
-if (yearSpan) {
-  yearSpan.textContent = new Date().getFullYear();
-}
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
