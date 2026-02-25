@@ -21,6 +21,7 @@ body {
   color: var(--text-main);
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
+  padding-top: 80px;
 }
 
 /* ================= SPLASH ================= */
@@ -80,7 +81,7 @@ body {
   top: 0;
   padding: 25px 0;
   background: transparent;
-  transition: background .4s ease;
+  transition: background .4s ease, backdrop-filter .4s ease;
   z-index: 1000;
 }
 
@@ -90,16 +91,23 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* Logo anchored to navbar (not container) */
+.navbar.menu-open {
+  background: rgba(15,15,15,.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 25px rgba(0,0,0,.6);
+}
+
+/* NAV LOGO */
+
 .nav-logo {
   position: absolute;
   top: 50%;
-  left: 50px;  /* desktop left */
+  left: 50px;
   height: 70px;
-  transform: translateY(-50%) scale(3); /* visually huge */
+  transform: translateY(-50%) scale(3);
   transform-origin: left center;
   opacity: 0;
-  transition: opacity .6s ease;
+  transition: opacity .4s ease;
   pointer-events: none;
   z-index: 10;
 }
@@ -136,20 +144,68 @@ body {
   width: 100%;
 }
 
+/* HAMBURGER ICON ANIMATION */
+
 .navbar-toggler {
   border: none;
+  position: absolute;
+  right: 20px;
 }
 
 .navbar-toggler:focus {
   box-shadow: none;
 }
 
+.navbar-toggler-icon {
+  background-image: none;
+  width: 24px;
+  height: 2px;
+  background: white;
+  position: relative;
+  transition: all .3s ease;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: white;
+  transition: all .3s ease;
+}
+
+.navbar-toggler-icon::before {
+  top: -7px;
+}
+
+.navbar-toggler-icon::after {
+  top: 7px;
+}
+
+.navbar-toggler.open .navbar-toggler-icon {
+  background: transparent;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navbar-toggler.open .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
 /* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
 
-  .hero-logo {
-    width: 85vw;
+  .navbar {
+    height: 80px;
+    padding: 0;
+    display: flex;
+    align-items: center;
   }
 
   .nav-logo {
@@ -161,8 +217,20 @@ body {
   }
 
   .navbar-collapse {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
     background: rgba(15,15,15,.98);
-    padding: 20px;
+    padding: 25px 0;
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all .4s ease;
+  }
+
+  .navbar-collapse.show {
+    transform: translateY(0);
+    opacity: 1;
   }
 
 }
@@ -195,7 +263,6 @@ footer {
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
 
-  <!-- BIG NAV LOGO -->
   <img src="Simple_banner.png" class="nav-logo" id="navLogo" alt="Nav Logo">
 
   <div class="container d-flex justify-content-end align-items-center">
@@ -234,19 +301,39 @@ const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
 const navLogo = document.getElementById("navLogo");
 const splash = document.querySelector(".splash");
+const navMenu = document.getElementById("navMenu");
+const toggler = document.querySelector(".navbar-toggler");
 
+/* Desktop scroll behavior */
 window.addEventListener("scroll", () => {
-  if (window.scrollY > 80) {
-    nav.classList.add("scrolled");
-    heroLogo.classList.add("fade-out");
-    navLogo.classList.add("visible");
-    splash.classList.add("dim");
-  } else {
-    nav.classList.remove("scrolled");
-    heroLogo.classList.remove("fade-out");
-    navLogo.classList.remove("visible");
-    splash.classList.remove("dim");
+  if (window.innerWidth > 768) {
+    if (window.scrollY > 80) {
+      nav.classList.add("scrolled");
+      heroLogo.classList.add("fade-out");
+      navLogo.classList.add("visible");
+      splash.classList.add("dim");
+    } else {
+      nav.classList.remove("scrolled");
+      heroLogo.classList.remove("fade-out");
+      navLogo.classList.remove("visible");
+      splash.classList.remove("dim");
+    }
   }
+});
+
+/* Mobile collapse behavior */
+navMenu.addEventListener("show.bs.collapse", function () {
+  nav.classList.add("menu-open");
+  navLogo.classList.add("visible");
+  toggler.classList.add("open");
+  document.body.style.overflow = "hidden";
+});
+
+navMenu.addEventListener("hide.bs.collapse", function () {
+  nav.classList.remove("menu-open");
+  navLogo.classList.remove("visible");
+  toggler.classList.remove("open");
+  document.body.style.overflow = "";
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
