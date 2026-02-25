@@ -24,16 +24,18 @@ body {
   overflow-x: hidden;
 }
 
-/* ================= SPLASH ================= */
+/* ================= HERO ================= */
 
 .splash {
   position: relative;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
 }
+
+/* VIDEO LAYERS */
 
 .splash video {
   position: absolute;
@@ -41,12 +43,20 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+
   filter: brightness(.35) grayscale(100%) contrast(120%) blur(4px);
-  transition: filter .6s ease;
+  transition: opacity 1.6s ease, filter 1.6s ease;
+
+  opacity: 0;
+  z-index: 1;
 }
 
-.splash.dim video {
-  filter: brightness(.25) grayscale(100%) contrast(130%) blur(5px);
+.splash video.active {
+  opacity: 1;
+}
+
+.splash video.transitioning {
+  filter: brightness(.25) grayscale(100%) contrast(130%) blur(14px);
 }
 
 .overlay {
@@ -57,13 +67,14 @@ body {
     rgba(212,175,55,.12),
     rgba(0,0,0,.85)
   );
+  z-index: 2;
 }
 
 .hero-logo {
   position: relative;
   width: clamp(500px, 70vw, 1200px);
   transition: opacity .6s ease, transform .6s ease;
-  z-index: 2;
+  z-index: 3;
 }
 
 .hero-logo.fade-out {
@@ -102,7 +113,7 @@ body {
   color: var(--gold) !important;
 }
 
-/* ================= SERVICES SECTION ================= */
+/* ================= SERVICES ================= */
 
 .services-preview {
   padding: 120px 0;
@@ -172,7 +183,8 @@ footer {
 <body>
 
 <header class="splash">
-  <video id="bgVideo" autoplay muted playsinline></video>
+  <video id="videoA" muted playsinline></video>
+  <video id="videoB" muted playsinline></video>
   <div class="overlay"></div>
   <img src="Banner.png" class="hero-logo" id="heroLogo" alt="Hero Logo">
 </header>
@@ -188,8 +200,6 @@ footer {
   </div>
 </nav>
 
-<!-- SERVICES PREVIEW -->
-
 <section class="services-preview">
   <div class="container text-center mb-5">
     <h2 class="display-5 fw-bold">Premium Detailing Services</h2>
@@ -204,7 +214,7 @@ footer {
           <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9" alt="Interior Detail">
           <div class="service-content">
             <h5>Interior Detail</h5>
-            <p>Deep steam cleaning, leather conditioning, full vacuum, trim restoration, and glass cleaning.</p>
+            <p>Steam cleaning, leather conditioning, trim restoration, and full cabin reset.</p>
           </div>
         </div>
       </div>
@@ -214,7 +224,7 @@ footer {
           <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" alt="Exterior Detail">
           <div class="service-content">
             <h5>Exterior Detail</h5>
-            <p>Foam pre-soak, hand wash, clay bar treatment, premium wax sealant, and wheel deep clean.</p>
+            <p>Foam pre-soak, hand wash, clay bar treatment, premium wax protection.</p>
           </div>
         </div>
       </div>
@@ -224,7 +234,7 @@ footer {
           <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8" alt="Gold Standard Service">
           <div class="service-content">
             <h5>Gold Standard Service</h5>
-            <p>Complete interior & exterior reset with extended protection and premium finishing touches.</p>
+            <p>Complete interior & exterior refinement with extended protection.</p>
           </div>
         </div>
       </div>
@@ -246,8 +256,18 @@ footer {
 <script>
 const nav = document.getElementById("mainNav");
 const heroLogo = document.getElementById("heroLogo");
-const splash = document.querySelector(".splash");
-const videoElement = document.getElementById("bgVideo");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    nav.classList.add("visible", "scrolled");
+    heroLogo.classList.add("fade-out");
+  } else {
+    nav.classList.remove("visible", "scrolled");
+    heroLogo.classList.remove("fade-out");
+  }
+});
+
+/* VIDEO CROSSFADE SYSTEM */
 
 const videoSources = [
   "6159201-hd_1920_1080_30fps.mp4",
@@ -256,31 +276,41 @@ const videoSources = [
   "6157787-hd_1920_1080_30fps.mp4"
 ];
 
-let currentVideo = 0;
+const videoA = document.getElementById("videoA");
+const videoB = document.getElementById("videoB");
 
-function loadVideo(index) {
-  videoElement.src = videoSources[index];
-  videoElement.play();
+let currentIndex = 0;
+let activeVideo = videoA;
+let nextVideo = videoB;
+
+function startVideo(video, src) {
+  video.src = src;
+  video.load();
+  video.play();
 }
 
-videoElement.addEventListener("ended", () => {
-  currentVideo = (currentVideo + 1) % videoSources.length;
-  loadVideo(currentVideo);
-});
+function switchVideo() {
+  currentIndex = (currentIndex + 1) % videoSources.length;
 
-loadVideo(currentVideo);
+  startVideo(nextVideo, videoSources[currentIndex]);
+  activeVideo.classList.add("transitioning");
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    nav.classList.add("visible", "scrolled");
-    heroLogo.classList.add("fade-out");
-    splash.classList.add("dim");
-  } else {
-    nav.classList.remove("visible", "scrolled");
-    heroLogo.classList.remove("fade-out");
-    splash.classList.remove("dim");
-  }
-});
+  setTimeout(() => {
+    activeVideo.classList.remove("active", "transitioning");
+    nextVideo.classList.add("active");
+
+    let temp = activeVideo;
+    activeVideo = nextVideo;
+    nextVideo = temp;
+
+  }, 800);
+}
+
+startVideo(videoA, videoSources[currentIndex]);
+videoA.classList.add("active");
+
+videoA.addEventListener("ended", switchVideo);
+videoB.addEventListener("ended", switchVideo);
 
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
