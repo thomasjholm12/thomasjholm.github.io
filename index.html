@@ -93,43 +93,30 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* ================= LOGO ================= */
+/* LOGO FIXED */
 
 .nav-logo-wrapper {
   position: fixed;
   left: 40px;
-  top: -15px;   /* PUSHED UP 30px */
+  top: 15px;
   z-index: 1100;
-
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: opacity .4s ease, transform .4s ease;
-}
-
-.navbar.visible ~ .nav-logo-wrapper {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 #navLogo {
   height: 90px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE CENTER LOGO */
 
 @media (max-width: 991px) {
   .nav-logo-wrapper {
     left: 50%;
-    top: -15px;
-    transform: translate(-50%, -20px);
-  }
-
-  .navbar.visible ~ .nav-logo-wrapper {
-    transform: translate(-50%, 0);
+    transform: translateX(-50%);
+    top: 15px;
   }
 }
 
-/* ================= MOBILE MENU ================= */
+/* MOBILE MENU (separate layer) */
 
 .mobile-menu {
   position: fixed;
@@ -146,7 +133,9 @@ body {
   font-weight: 500;
 }
 
-.nav-link:hover { color: var(--gold) !important; }
+.nav-link:hover {
+  color: var(--gold) !important;
+}
 
 .navbar-toggler { border: none; }
 .navbar-toggler:focus { box-shadow: none; }
@@ -304,6 +293,50 @@ window.addEventListener("scroll", () => {
     heroLogo.classList.remove("fade-out");
   }
 });
+
+/* VIDEO CROSSFADE */
+
+const videoSources = [
+  "6159201-hd_1920_1080_30fps.mp4",
+  "6159207-hd_1920_1080_30fps.mp4",
+  "6158070-hd_1920_1080_30fps.mp4",
+  "6157787-hd_1920_1080_30fps.mp4"
+];
+
+const videoA = document.getElementById("videoA");
+const videoB = document.getElementById("videoB");
+
+let currentIndex = 0;
+let activeVideo = videoA;
+let nextVideo = videoB;
+
+function startVideo(video, src) {
+  video.src = src;
+  video.load();
+  video.play();
+}
+
+function switchVideo() {
+  currentIndex = (currentIndex + 1) % videoSources.length;
+  startVideo(nextVideo, videoSources[currentIndex]);
+  activeVideo.classList.add("transitioning");
+
+  setTimeout(() => {
+    activeVideo.classList.remove("active", "transitioning");
+    nextVideo.classList.add("active");
+    let temp = activeVideo;
+    activeVideo = nextVideo;
+    nextVideo = temp;
+  }, 800);
+}
+
+startVideo(videoA, videoSources[currentIndex]);
+videoA.classList.add("active");
+
+videoA.addEventListener("ended", switchVideo);
+videoB.addEventListener("ended", switchVideo);
+
+document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
