@@ -47,9 +47,7 @@ body {
   z-index: 1;
 }
 
-.splash video.active {
-  opacity: 1;
-}
+.splash video.active { opacity: 1; }
 
 .splash video.transitioning {
   filter: brightness(.25) grayscale(100%) contrast(130%) blur(12px);
@@ -58,11 +56,7 @@ body {
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    90deg,
-    rgba(212,175,55,.12),
-    rgba(0,0,0,.85)
-  );
+  background: linear-gradient(90deg, rgba(212,175,55,.12), rgba(0,0,0,.85));
   z-index: 2;
 }
 
@@ -84,19 +78,14 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 90px;            /* HARD LOCKED */
-  min-height: 90px;
-  max-height: 90px;
-  overflow: visible;       /* Important */
+  height: 90px;
   background: transparent;
   transform: translateY(-100%);
-  transition: transform .4s ease, background .4s ease, backdrop-filter .4s ease;
+  transition: transform .4s ease, background .4s ease;
   z-index: 1000;
 }
 
-.navbar.visible {
-  transform: translateY(0);
-}
+.navbar.visible { transform: translateY(0); }
 
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
@@ -104,48 +93,40 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
 
-/* LOGO — anchored from top now (NOT centered) */
-
-/* LOGO — DESKTOP */
+/* LOGO FIXED */
 
 .nav-logo-wrapper {
-  position: absolute;
+  position: fixed;
   left: 40px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 15px;
   z-index: 1100;
 }
 
 #navLogo {
-  height: 90px;   /* Bigger */
+  height: 90px;
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE CENTER LOGO */
 
 @media (max-width: 991px) {
-
   .nav-logo-wrapper {
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
+    top: 15px;
   }
-
-  #navLogo {
-    height: 100px;
-  }
-
-  .navbar-collapse {
-    position: absolute;
-    top: 90px;
-    left: 0;
-    width: 100%;
-    background: rgba(15,15,15,.98);
-    padding: 25px 0;
-  }
-
 }
 
-/* NAV LINKS */
+/* MOBILE MENU (separate layer) */
+
+.mobile-menu {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  width: 100%;
+  background: rgba(15,15,15,.98);
+  padding: 25px 0;
+  z-index: 999;
+}
 
 .nav-link {
   color: var(--text-muted) !important;
@@ -156,21 +137,12 @@ body {
   color: var(--gold) !important;
 }
 
-/* HAMBURGER */
-
-.navbar-toggler {
-  border: none;
-}
-
-.navbar-toggler:focus {
-  box-shadow: none;
-}
+.navbar-toggler { border: none; }
+.navbar-toggler:focus { box-shadow: none; }
 
 /* ================= SERVICES ================= */
 
-.services-preview {
-  padding: 120px 0;
-}
+.services-preview { padding: 120px 0; }
 
 .service-card {
   background: var(--bg-card);
@@ -191,13 +163,9 @@ body {
   object-fit: cover;
 }
 
-.service-content {
-  padding: 25px;
-}
+.service-content { padding: 25px; }
 
-.service-content h5 {
-  color: var(--gold);
-}
+.service-content h5 { color: var(--gold); }
 
 .service-content p {
   color: var(--text-muted);
@@ -215,10 +183,7 @@ body {
   transition: transform .2s ease;
 }
 
-.gold-btn:hover {
-  transform: scale(1.05);
-  color: #000;
-}
+.gold-btn:hover { transform: scale(1.05); }
 
 footer {
   background: #1a1a1a;
@@ -240,29 +205,27 @@ footer {
 </header>
 
 <nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container position-relative d-flex align-items-center">
-
-    <a href="index.html" class="nav-logo-wrapper">
-      <img src="Simple_banner.png" id="navLogo" alt="Logo">
-    </a>
-
+  <div class="container d-flex justify-content-end align-items-center h-100">
     <button class="navbar-toggler ms-auto" type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav gap-lg-4 text-center ms-auto">
-        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
-      </ul>
-    </div>
-
   </div>
 </nav>
+
+<a href="index.html" class="nav-logo-wrapper">
+  <img src="Simple_banner.png" id="navLogo" alt="Logo">
+</a>
+
+<div class="collapse navbar-collapse mobile-menu" id="navMenu">
+  <ul class="navbar-nav text-center">
+    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+  </ul>
+</div>
 
 <section class="services-preview">
   <div class="container text-center mb-5">
@@ -275,7 +238,7 @@ footer {
 
       <div class="col-lg-4">
         <div class="service-card">
-          <img src="https://images.unsplash.com/photo-1771491237209-b89bc7290588?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="">
+          <img src="https://images.unsplash.com/photo-1771491237209-b89bc7290588?q=80&w=1632" alt="">
           <div class="service-content">
             <h5>Interior Detail</h5>
             <p>Steam cleaning, leather conditioning, trim restoration, and full cabin reset.</p>
