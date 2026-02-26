@@ -10,36 +10,64 @@
       background: #0f0f0f;
       color: white;
       font-family: system-ui;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+    }
+
+    .booking-wrapper {
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-weight: 600;
     }
   </style>
 </head>
+
 <body>
 
-  
-  const params = new URLSearchParams(window.location.search);
-const service = params.get("service");
+  <div class="booking-wrapper">
+    <h1 id="serviceTitle">Book Your Appointment</h1>
 
-let calendlyUrl = "";
-
-if (service === "interior") {
-  calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail";
-}
-if (service === "exterior") {
-  calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail-clone";
-}
-if (service === "gold") {
-  calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/exterior-detail-clone";
-}
-
-document.querySelector(".calendly-inline-widget")
-  .setAttribute("data-url", calendlyUrl);
+    <div class="calendly-inline-widget"
+         id="calendlyWidget"
+         style="min-width:320px;height:900px;">
+    </div>
   </div>
 
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const service = params.get("service");
+
+    const calendlyWidget = document.getElementById("calendlyWidget");
+    const serviceTitle = document.getElementById("serviceTitle");
+
+    let calendlyUrl = "";
+
+    if (service === "interior") {
+      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail";
+      serviceTitle.textContent = "Book Interior Detail";
+    }
+
+    if (service === "exterior") {
+      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/exterior-detail";
+      serviceTitle.textContent = "Book Exterior Detail";
+    }
+
+    if (service === "gold") {
+      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/gold-standard";
+      serviceTitle.textContent = "Book Gold Standard Service";
+    }
+
+    // Fallback if no parameter
+    if (!calendlyUrl) {
+      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail";
+    }
+
+    calendlyWidget.setAttribute("data-url", calendlyUrl);
+  </script>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js"></script>
 
 </body>
 </html>
