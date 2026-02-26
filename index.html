@@ -314,6 +314,21 @@ videoA.addEventListener("ended", switchVideo);
 videoB.addEventListener("ended", switchVideo);
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+const navToggler = document.querySelector(".navbar-toggler");
+const navCollapse = document.getElementById("navMenu");
+
+/* When mobile menu opens */
+navCollapse.addEventListener("show.bs.collapse", () => {
+  nav.classList.add("scrolled");
+});
+
+/* When mobile menu closes */
+navCollapse.addEventListener("hide.bs.collapse", () => {
+  if (window.scrollY < 50) {
+    nav.classList.remove("scrolled");
+  }
+});
 </script>
 
 </body>
