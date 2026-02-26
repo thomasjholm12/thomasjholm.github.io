@@ -20,9 +20,23 @@
 <body>
 
   
-  <div class="calendly-inline-widget" 
-       data-url="https://calendly.com/thomas-goldstandarddetailing/interior-detail"
-       style="min-width:320px;height:700px;">
+  const params = new URLSearchParams(window.location.search);
+const service = params.get("service");
+
+let calendlyUrl = "";
+
+if (service === "interior") {
+  calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail";
+}
+if (service === "exterior") {
+  calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail-clone";
+}
+if (service === "gold") {
+  calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/exterior-detail-clone";
+}
+
+document.querySelector(".calendly-inline-widget")
+  .setAttribute("data-url", calendlyUrl);
   </div>
 
   <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
