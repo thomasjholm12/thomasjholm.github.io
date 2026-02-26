@@ -58,6 +58,10 @@
       calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/gold-standard";
       serviceTitle.textContent = "Book Gold Standard Service";
     }
+    if (service === "full") {
+      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/full-detail";
+      serviceTitle.textContent = "Book Interior Detail";
+    }
 
     // Fallback if no parameter
     if (!calendlyUrl) {
