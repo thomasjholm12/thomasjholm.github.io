@@ -24,7 +24,25 @@ body {
   font-family: system-ui, sans-serif;
 }
 
-/* NAVBAR */
+/* ================= LOGO ================= */
+
+.site-logo {
+  position: fixed;
+  top: 20px;
+  left: 30px;
+  z-index: 1100;
+}
+
+.site-logo img {
+  height: 85px;
+  transition: transform .3s ease;
+}
+
+.site-logo:hover img {
+  transform: scale(1.05);
+}
+
+/* ================= NAVBAR ================= */
 
 .navbar {
   background: rgba(15,15,15,.95);
@@ -41,10 +59,10 @@ body {
   color: var(--gold) !important;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 .page-header {
-  padding: 140px 0 80px;
+  padding: 160px 0 80px;
   text-align: center;
   background: linear-gradient(
     90deg,
@@ -54,7 +72,7 @@ body {
 }
 
 .page-header h1 {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 700;
 }
 
@@ -62,7 +80,7 @@ body {
   color: var(--text-muted);
 }
 
-/* CARDS */
+/* ================= CARDS ================= */
 
 .card {
   background: var(--bg-card);
@@ -75,7 +93,7 @@ body {
   color: var(--gold);
 }
 
-/* FORM */
+/* ================= FORM ================= */
 
 .form-control {
   background: #111;
@@ -108,7 +126,7 @@ body {
   transform: scale(1.05);
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer {
   background: #1a1a1a;
@@ -121,42 +139,40 @@ footer {
 
 <body>
 
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand text-white fw-semibold" href="index.html">Gold Standard Detailing</a>
-    <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<!-- LOGO -->
+<a href="index.html" class="site-logo">
+  <img src="Simple_banner.png" alt="Gold Standard Detailing Logo">
+</a>
 
-    <div class="collapse navbar-collapse justify-content-end" id="mainNav">
-      <ul class="navbar-nav gap-lg-4 text-center">
-        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-        <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
-      </ul>
-    </div>
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container justify-content-end">
+    <ul class="navbar-nav gap-lg-4 text-center">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+      <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+    </ul>
   </div>
 </nav>
 
 <header class="page-header">
   <div class="container">
-    <h1>Contact</h1>
-    <p>The fastest way to reach us is email or phone.</p>
+    <h1>Contact Us</h1>
+    <p>Mobile detailing brought directly to your driveway.</p>
   </div>
 </header>
 
 <main class="container py-5">
   <div class="row g-4">
 
-    <!-- Contact Details -->
+    <!-- Contact Info -->
     <div class="col-lg-6">
       <div class="card p-4 h-100">
-        <h2 class="h5 fw-semibold mb-4">Contact Details</h2>
+        <h2 class="h5 fw-semibold mb-4">Get In Touch</h2>
 
         <p>
           <i class="bi bi-envelope me-2"></i>
           <a class="text-decoration-none text-light" href="mailto:thomasjholm12@gmail.com">
-            thomasjholm12@gmail.com
+            thomas@goldstandarddetailing.com
           </a>
         </p>
 
@@ -170,17 +186,17 @@ footer {
         <hr class="border-secondary my-4">
 
         <p class="text-muted small mb-0">
-          We look forward to servicing your vehicle.
+          Serving the Twin Cities with premium mobile detailing.
         </p>
       </div>
     </div>
 
-    <!-- Contact Form -->
+    <!-- Message Form -->
     <div class="col-lg-6">
       <div class="card p-4 h-100">
         <h2 class="h5 fw-semibold mb-4">Send a Message</h2>
 
-        <form id="contactForm" novalidate>
+        <form id="contactForm">
 
           <div class="mb-3">
             <label for="name" class="form-label">Your Name</label>
@@ -202,7 +218,7 @@ footer {
           </button>
 
           <p class="text-muted small mt-3 mb-0">
-            Clicking this opens your default email app.
+            This will open your email app to send us a message.
           </p>
 
         </form>
@@ -230,7 +246,7 @@ form.addEventListener("submit", (e) => {
   const subject = document.getElementById("subject").value.trim();
   const message = document.getElementById("message").value.trim();
 
-  const emailTo = "thomasjholm12@gmail.com";
+  const emailTo = "thomas@goldstandarddetailing.com";
   const fullSubject = encodeURIComponent(subject);
   const fullBody = encodeURIComponent(`Name: ${name}\n\n${message}`);
 
