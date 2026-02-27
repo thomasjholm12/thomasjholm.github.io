@@ -23,15 +23,20 @@ body {
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
 }
-  /* ================= SERVICE IMAGE FIX ================= */
+
+/* ================= SERVICE IMAGE FIX ================= */
 
 .service-image {
-  height: 100%;
-  min-height: 420px;   /* Controls uniform height */
   width: 100%;
-  object-fit: cover;   /* Crops instead of stretching */
+  height: 100%;
+  object-fit: cover;
   border-radius: 20px;
   box-shadow: 0 20px 40px rgba(0,0,0,.6);
+  transition: transform .5s ease;
+}
+
+.service-image:hover {
+  transform: scale(1.03);
 }
 
 /* ================= NAVBAR ================= */
@@ -65,7 +70,8 @@ body {
 .nav-link:hover {
   color: var(--gold) !important;
 }
-  /* ================= FIXED LOGO ================= */
+
+/* ================= FIXED LOGO ================= */
 
 .site-logo {
   position: fixed;
@@ -184,9 +190,11 @@ footer {
 </head>
 
 <body>
+
 <a href="index.html" class="site-logo">
   <img src="Simple_banner.png" alt="Gold Standard Detailing Logo">
 </a>
+
 <nav id="mainNav" class="navbar navbar-expand-lg">
   <div class="container justify-content-end">
     <ul class="navbar-nav gap-4">
@@ -209,7 +217,7 @@ footer {
   <div class="container">
 
     <!-- INTERIOR -->
-    <div class="row align-items-center g-5 mb-5">
+    <div class="row align-items-stretch g-5 mb-5">
       <div class="col-lg-6">
         <div class="service-card">
           <div class="service-title">Interior Detail</div>
@@ -228,13 +236,14 @@ footer {
         </div>
       </div>
       <div class="col-lg-6">
-        <img src="https://images.unsplash.com/photo-1771491237209-b89bc7290588?q=80&w=1632" class="service-image">
+        <img src="https://images.unsplash.com/photo-1771491237209-b89bc7290588?q=80&w=1632"
+             class="service-image"
              alt="Interior detailing">
       </div>
     </div>
 
     <!-- EXTERIOR -->
-    <div class="row align-items-center g-5 mb-5 flex-lg-row-reverse">
+    <div class="row align-items-stretch g-5 mb-5 flex-lg-row-reverse">
       <div class="col-lg-6">
         <div class="service-card">
           <div class="service-title">Exterior Detail</div>
@@ -253,62 +262,15 @@ footer {
         </div>
       </div>
       <div class="col-lg-6">
-        <img src="https://images.unsplash.com/photo-1761312834150-4beefff097a7?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="service-image">
+        <img src="https://images.unsplash.com/photo-1761312834150-4beefff097a7?q=80&w=687&auto=format&fit=crop"
+             class="service-image"
              alt="Exterior detailing">
-      </div>
-    </div>
-
-    <!-- FULL DETAIL -->
-    <div class="row align-items-center g-5 mb-5">
-      <div class="col-lg-6">
-        <div class="service-card">
-          <div class="service-title">Full Detail</div>
-          <ul>
-            <li>Complete interior detail</li>
-            <li>Complete exterior detail</li>
-            <li>Engine bay wipe-down</li>
-            <li>Clay bar treatment</li>
-            <li>3–4 month wax protection</li>
-          </ul>
-          <div class="price">Starting at $299</div>
-          <a href="booking.html?service=full" class="gold-btn">
-            Book Full Detail
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <img src="https://images.unsplash.com/photo-1620584899131-a5ff5f8fbb03?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="service-image">
-             alt="Full detailing">
-      </div>
-    </div>
-
-    <!-- GOLD STANDARD -->
-    <div class="row align-items-center g-5 flex-lg-row-reverse">
-      <div class="col-lg-6">
-        <div class="service-card gold-tier">
-          <div class="service-title">Gold Standard Service</div>
-          <ul>
-            <li>Everything in Full Detail package</li>
-            <li>Deep stain extraction</li>
-            <li>Odor neutralization treatment</li>
-            <li>Headlight restoration</li>
-            <li>6-month premium sealant</li>
-            <li>Interior UV protection</li>
-          </ul>
-          <div class="price">Starting at $375</div>
-          <a href="booking.html?service=gold" class="gold-btn">
-            Book Gold Standard Service
-          </a>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537" class="service-image">
-             alt="Premium detailing">
       </div>
     </div>
 
   </div>
 </section>
+
 <footer>
   © <span id="year"></span> Gold Standard Detailing.
 </footer>
