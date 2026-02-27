@@ -110,6 +110,12 @@ body {
   transform: translateY(5px);
   transition: opacity .4s ease, transform .4s ease;
 }
+.nav-logo {
+  height: 80px;          /* same base height */
+  transform: scale(1.3); /* same visual enlargement */
+  transform-origin: left center;
+  transition: transform .4s ease;
+}
 
 /* Show navbar logo when nav is active */
 #mainNav.show-logo .navbar-brand {
@@ -202,7 +208,7 @@ footer {
   <div class="container">
 
     <a class="navbar-brand" href="index.html">
-      <img src="Simple_banner.png" height="80" alt="Logo">
+      <img src="Simple_banner.png" class="nav-logo" alt="Logo">
     </a>
 
     <button class="navbar-toggler" type="button"
