@@ -78,22 +78,27 @@ body {
 /* ================= HEADER ================= */
 
 .page-header {
-  padding: 160px 0 100px;
+  position: relative;
+  padding: 220px 0 140px;
   text-align: center;
-  background: linear-gradient(
-    90deg,
-    rgba(212,175,55,.08),
-    rgba(0,0,0,.9)
-  );
+  background: url("https://images.unsplash.com/photo-1603386329225-868f9b1ee6f9") center/cover no-repeat;
+}
+
+.page-header::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(212,175,55,.15), rgba(0,0,0,.85));
+}
+
+.page-header .container {
+  position: relative;
+  z-index: 2;
 }
 
 .page-header h1 {
-  font-size: 3rem;
+  font-size: 3.5rem;
   font-weight: 700;
-}
-
-.page-header p {
-  color: var(--text-muted);
 }
 
 /* ================= SERVICE CARDS ================= */
@@ -192,9 +197,9 @@ footer {
 
 <section class="py-5">
   <div class="container">
-    <div class="row g-4">
 
-      <!-- INTERIOR -->
+    <!-- INTERIOR -->
+    <div class="row align-items-center g-5 mb-5">
       <div class="col-lg-6">
         <div class="service-card">
           <div class="service-title">Interior Detail</div>
@@ -212,8 +217,15 @@ footer {
           </a>
         </div>
       </div>
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1607860108855-64acf2078ed9"
+             class="img-fluid rounded-4 shadow-lg"
+             alt="Interior detailing">
+      </div>
+    </div>
 
-      <!-- EXTERIOR -->
+    <!-- EXTERIOR -->
+    <div class="row align-items-center g-5 mb-5 flex-lg-row-reverse">
       <div class="col-lg-6">
         <div class="service-card">
           <div class="service-title">Exterior Detail</div>
@@ -231,11 +243,18 @@ footer {
           </a>
         </div>
       </div>
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8"
+             class="img-fluid rounded-4 shadow-lg"
+             alt="Exterior detailing">
+      </div>
+    </div>
 
-      <!-- FULL DETAIL -->
+    <!-- FULL DETAIL -->
+    <div class="row align-items-center g-5 mb-5">
       <div class="col-lg-6">
         <div class="service-card">
-          <div class="service-title">Full Detail (Interior + Exterior)</div>
+          <div class="service-title">Full Detail</div>
           <ul>
             <li>Complete interior detail</li>
             <li>Complete exterior detail</li>
@@ -249,8 +268,15 @@ footer {
           </a>
         </div>
       </div>
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1597007030739-6d2e6c37d6e2"
+             class="img-fluid rounded-4 shadow-lg"
+             alt="Full detailing">
+      </div>
+    </div>
 
-      <!-- GOLD STANDARD -->
+    <!-- GOLD STANDARD -->
+    <div class="row align-items-center g-5 flex-lg-row-reverse">
       <div class="col-lg-6">
         <div class="service-card gold-tier">
           <div class="service-title">Gold Standard Service</div>
@@ -268,11 +294,15 @@ footer {
           </a>
         </div>
       </div>
-
+      <div class="col-lg-6">
+        <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537"
+             class="img-fluid rounded-4 shadow-lg"
+             alt="Premium detailing">
+      </div>
     </div>
+
   </div>
 </section>
-
 <footer>
   © <span id="year"></span> Gold Standard Detailing.
 </footer>
