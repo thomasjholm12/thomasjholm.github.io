@@ -272,30 +272,29 @@ footer {
   <div class="container">
 
     <!-- INTERIOR -->
-    <div class="row align-items-stretch g-3 g-lg-5 mb-5">
-      <div class="col-7 col-lg-6">
-        <div class="service-card">
-          <div class="service-title">Interior Detail</div>
-          <ul class="d-none d-lg-block">
-            <li>Full interior vacuum</li>
-            <li>Steam cleaning (seats & carpets)</li>
-            <li>Leather conditioning</li>
-            <li>Dash & trim deep clean</li>
-            <li>Door jamb wipe-down</li>
-            <li>Interior glass cleaning</li>
-          </ul>
-          <div class="price">Starting at $149</div>
-          <a href="booking.html?service=interior" class="gold-btn">
-            Book Interior
-          </a>
-        </div>
-      </div>
-      <div class="col-5 col-lg-6">
-        <img src="https://images.unsplash.com/photo-1771491237209-b89bc7290588?q=80&w=1632"
-             class="service-image"
-             alt="Interior detailing">
-      </div>
-    </div>
+    <div class="service-content">
+  <h5>Interior Detail</h5>
+  <p>Steam cleaning, leather conditioning, trim restoration, and full cabin reset.</p>
+
+  <a class="details-toggle" data-bs-toggle="collapse" href="#interiorDetails" role="button">
+    See What's Included →
+  </a>
+
+  <div class="collapse mt-3" id="interiorDetails">
+    <ul class="service-breakdown">
+      <li>Full interior vacuum</li>
+      <li>Steam clean seats & carpets</li>
+      <li>Leather conditioning</li>
+      <li>Dashboard & trim deep clean</li>
+      <li>Door jamb wipe-down</li>
+      <li>Interior glass cleaning</li>
+    </ul>
+  </div>
+
+  <a href="booking.html?service=interior" class="gold-btn mt-3">
+    Book Now
+  </a>
+</div>
 
     <!-- EXTERIOR -->
     <div class="row align-items-stretch g-3 g-lg-5 mb-5 flex-lg-row-reverse">
