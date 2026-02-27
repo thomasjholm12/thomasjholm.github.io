@@ -81,7 +81,7 @@ body {
 }
 
 #mainNav.scrolled {
-  background: rgba(15,15,15,.95);
+  background: rgba(15,15,15,.75);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
 }
@@ -124,10 +124,13 @@ body {
 }
 
 /* MOBILE DROPDOWN BACKGROUND */
-@media (max-width: 991.98px) {
-  #navMenu {
-    background: rgba(15,15,15,0.98);
-    backdrop-filter: blur(12px);
+@media (max-width: 991px) {
+  .navbar-collapse {
+    position: absolute;
+    top: 80px; /* exact navbar height */
+    left: 0;
+    width: 100%;
+    background: rgba(15,15,15,.75);
     padding: 20px 0;
   }
 }
