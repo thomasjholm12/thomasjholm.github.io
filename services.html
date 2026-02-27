@@ -218,6 +218,21 @@ body {
   color: var(--text-muted);
   font-size: .9rem;
 }
+/* Fade animation for collapse */
+.collapse {
+  transition: height .35s ease;
+}
+
+.collapse .service-breakdown {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.collapse.show .service-breakdown {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 .service-breakdown li {
   margin-bottom: 6px;
@@ -459,7 +474,24 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+/* Auto scroll to opened service */
+document.querySelectorAll('.collapse').forEach(collapseEl => {
 
+  collapseEl.addEventListener('shown.bs.collapse', function () {
+
+    const card = collapseEl.closest('.service-card');
+
+    const yOffset = -120; // adjusts for navbar height
+    const y = card.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+    window.scrollTo({
+      top: y,
+      behavior: 'smooth'
+    });
+
+  });
+
+});
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
