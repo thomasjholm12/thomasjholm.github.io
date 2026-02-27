@@ -23,7 +23,53 @@ body {
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
 }
+/* ================= BADGES ================= */
 
+.badge-ribbon {
+  position: absolute;
+  top: 20px;
+  right: -40px;
+  background: var(--gold);
+  color: #000;
+  padding: 6px 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  transform: rotate(45deg);
+  box-shadow: 0 5px 15px rgba(0,0,0,.4);
+  letter-spacing: 1px;
+}
+
+/* ================= CARD POSITION FIX ================= */
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+}
+
+/* ================= GOLD PULSE ANIMATION ================= */
+
+@keyframes goldPulse {
+  0% { box-shadow: 0 0 0 0 rgba(212,175,55,.6); }
+  70% { box-shadow: 0 0 0 20px rgba(212,175,55,0); }
+  100% { box-shadow: 0 0 0 0 rgba(212,175,55,0); }
+}
+
+/* Most Popular Glow */
+.gold-tier {
+  border: 1px solid var(--gold);
+  animation: goldPulse 3s infinite;
+}
+
+/* ================= PRICE HOVER EFFECT ================= */
+
+.price {
+  transition: transform .3s ease, color .3s ease;
+}
+
+.service-card:hover .price {
+  transform: scale(1.05);
+  color: var(--gold);
+}
 /* ================= SERVICE IMAGE FIX ================= */
 
 .service-image {
@@ -47,15 +93,17 @@ body {
   top: 0;
   padding: 25px 0;
   background: transparent;
-  transform: translateY(-100%);
+  transform: translateY(0);
   transition: transform .4s ease, background .4s ease, backdrop-filter .4s ease;
   z-index: 1000;
 }
+<button class="navbar-toggler" type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#mainNavCollapse">
+  <span class="navbar-toggler-icon"></span>
+</button>
 
-.navbar.visible {
-  transform: translateY(0);
-}
-
+<div class="collapse navbar-collapse" id="mainNavCollapse">
 .navbar.scrolled {
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
@@ -271,6 +319,7 @@ footer {
     <div class="row align-items-stretch g-5 mb-5">
       <div class="col-lg-6">
         <div class="service-card">
+          <div class="badge-ribbon">BEST VALUE</div>
           <div class="service-title">Full Detail (Interior + Exterior)</div>
           <ul>
             <li>Complete interior detail</li>
@@ -295,6 +344,7 @@ footer {
     <div class="row align-items-stretch g-5 flex-lg-row-reverse">
       <div class="col-lg-6">
         <div class="service-card gold-tier">
+          <div class="badge-ribbon">MOST POPULAR</div>
           <div class="service-title">Gold Standard Service</div>
           <ul>
             <li>Everything in Full Detail package</li>
@@ -327,15 +377,15 @@ footer {
 
 <script>
 const nav = document.getElementById("mainNav");
+const navCollapse = document.querySelector('.navbar-collapse');
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 50) {
-    nav.classList.add("visible", "scrolled");
-  } else {
-    nav.classList.remove("visible", "scrolled");
-  }
+navCollapse.addEventListener('show.bs.collapse', () => {
+  nav.classList.add('scrolled');
 });
 
+navCollapse.addEventListener('hide.bs.collapse', () => {
+  nav.classList.remove('scrolled');
+});
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
