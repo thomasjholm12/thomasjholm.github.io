@@ -23,6 +23,7 @@ body {
   font-family: system-ui, sans-serif;
   overflow-x: hidden;
 }
+  
 /* ================= BADGES ================= */
 
 .badge-ribbon {
@@ -91,54 +92,28 @@ body {
   position: fixed;
   width: 100%;
   top: 0;
-  padding: 25px 0;
-  background: transparent;
-  transform: translateY(0);
-  transition: transform .4s ease, background .4s ease, backdrop-filter .4s ease;
-  z-index: 1000;
-}
-<button class="navbar-toggler" type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#mainNavCollapse">
-  <span class="navbar-toggler-icon"></span>
-</button>
-
-<div class="collapse navbar-collapse" id="mainNavCollapse">
-.navbar.scrolled {
+  padding: 15px 0;
   background: rgba(15,15,15,.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
+  z-index: 1000;
 }
 
-.nav-link {
-  color: var(--text-muted) !important;
+.navbar-dark .navbar-nav .nav-link {
+  color: var(--text-muted);
   font-weight: 500;
 }
 
-.nav-link:hover {
-  color: var(--gold) !important;
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: var(--gold);
 }
 
-/* ================= FIXED LOGO ================= */
-
-.site-logo {
-  position: fixed;
-  top: -5px;
-  left: 30px;
-  z-index: 1100;
-  opacity: 0.9;
-  transition: opacity .3s ease, transform .3s ease;
+@media (max-width: 991px) {
+  .navbar-collapse {
+    background: rgba(15,15,15,.98);
+    padding: 20px 0;
+  }
 }
-
-.site-logo img {
-  height: 120px;
-}
-
-.site-logo:hover {
-  opacity: 1;
-  transform: scale(1.05);
-}
-
 /* ================= HEADER ================= */
 
 .page-header {
@@ -239,21 +214,36 @@ footer {
 
 <body>
 
-<a href="index.html" class="site-logo">
-  <img src="Simple_banner.png" alt="Gold Standard Detailing Logo">
-</a>
+<nav id="mainNav" class="navbar navbar-expand-lg navbar-dark">
+  <div class="container">
 
-<nav id="mainNav" class="navbar navbar-expand-lg">
-  <div class="container justify-content-end">
-    <ul class="navbar-nav gap-4">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
-      <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
-      <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-    </ul>
+    <!-- Logo inside navbar (recommended clean structure) -->
+    <a class="navbar-brand" href="index.html">
+      <img src="Simple_banner.png" height="60" alt="Gold Standard Detailing Logo">
+    </a>
+
+    <!-- Hamburger -->
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavCollapse"
+            aria-controls="mainNavCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav Links -->
+    <div class="collapse navbar-collapse justify-content-end" id="mainNavCollapse">
+      <ul class="navbar-nav gap-lg-4 text-center">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link active" href="services.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
   </div>
 </nav>
-
 <header class="page-header">
   <div class="container">
     <h1>Our Services</h1>
@@ -377,16 +367,7 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-const nav = document.getElementById("mainNav");
-const navCollapse = document.querySelector('.navbar-collapse');
 
-navCollapse.addEventListener('show.bs.collapse', () => {
-  nav.classList.add('scrolled');
-});
-
-navCollapse.addEventListener('hide.bs.collapse', () => {
-  nav.classList.remove('scrolled');
-});
 document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
