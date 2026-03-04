@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <style>
+
 :root {
   --bg-main: #0f0f0f;
   --bg-card: #171717;
@@ -24,35 +25,13 @@ body {
   font-family: system-ui, sans-serif;
 }
 
-/* ================= LOGO ================= */
-
-.site-logo {
-  position: fixed;
-  top: 10px;
-  left: 30px;
-  z-index: 1100;
-}
-
-.site-logo img {
-  height: 85px;
-  transition: transform .3s ease;
-}
-
-.site-logo:hover img {
-  transform: scale(1.05);
-}
-
 /* ================= NAVBAR ================= */
 
 .navbar {
-  position: fixed;
-  width: 100%;
-  top: 0;
-  padding: 15px 0;
+  height: 80px;
   background: rgba(15,15,15,.75);
   backdrop-filter: blur(10px);
   box-shadow: 0 10px 25px rgba(0,0,0,.6);
-  z-index: 1000;
 }
 
 .navbar-dark .navbar-nav .nav-link {
@@ -63,30 +42,23 @@ body {
 .navbar-dark .navbar-nav .nav-link:hover {
   color: var(--gold);
 }
-.navbar {
-  height: 80px;           /* fixed navbar height */
-  padding: 0;
-}
 
 .nav-logo {
-  height: 80px;           /* base size */
-  transform: scale(1.3);  /* visually enlarge */
-  transform-origin: left center;
+  height: 70px;
+  transition: transform .3s ease;
 }
-.navbar-collapse {
-  transition: all .3s ease;
+
+.nav-logo:hover {
+  transform: scale(1.05);
 }
 
 @media (max-width: 991px) {
   .navbar-collapse {
-    position: absolute;
-    top: 80px; /* exact navbar height */
-    left: 0;
-    width: 100%;
-    background: rgba(15,15,15,.75);
+    background: rgba(15,15,15,.95);
     padding: 20px 0;
   }
 }
+
 /* ================= HEADER ================= */
 
 .page-header {
@@ -162,26 +134,49 @@ footer {
   text-align: center;
   color: var(--text-muted);
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- LOGO -->
-<a class="navbar-brand" href="index.html">
-  <img src="Simple_banner.png" class="nav-logo" alt="Logo">
-</a>
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <div class="container">
 
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container justify-content-end">
-    <ul class="navbar-nav gap-lg-4 text-center">
-      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-      <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
-      <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
-    </ul>
+    <!-- Logo -->
+    <a class="navbar-brand" href="index.html">
+      <img src="Simple_banner.png" class="nav-logo" alt="Logo">
+    </a>
+
+    <!-- Mobile menu button -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Nav links -->
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-lg-4 text-center">
+
+        <li class="nav-item">
+          <a class="nav-link" href="index.html">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="services.html">Services</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" href="contact.html">Contact</a>
+        </li>
+
+      </ul>
+    </div>
+
   </div>
 </nav>
 
+<!-- HEADER -->
 <header class="page-header">
   <div class="container">
     <h1>Contact Us</h1>
@@ -189,17 +184,21 @@ footer {
   </div>
 </header>
 
+<!-- CONTENT -->
 <main class="container py-5">
+
   <div class="row g-4">
 
     <!-- Contact Info -->
     <div class="col-lg-6">
+
       <div class="card p-4 h-100">
+
         <h2 class="h5 fw-semibold mb-4">Get In Touch</h2>
 
         <p>
           <i class="bi bi-envelope me-2"></i>
-          <a class="text-decoration-none text-light" href="mailto:thomasjholm12@gmail.com">
+          <a class="text-decoration-none text-light" href="mailto:thomas@goldstandarddetailing.com">
             thomas@goldstandarddetailing.com
           </a>
         </p>
@@ -216,12 +215,16 @@ footer {
         <p class="text-muted small mb-0">
           Serving the Twin Cities with premium mobile detailing.
         </p>
+
       </div>
+
     </div>
 
     <!-- Message Form -->
     <div class="col-lg-6">
+
       <div class="card p-4 h-100">
+
         <h2 class="h5 fw-semibold mb-4">Send a Message</h2>
 
         <form id="contactForm">
@@ -250,12 +253,16 @@ footer {
           </p>
 
         </form>
+
       </div>
+
     </div>
 
   </div>
+
 </main>
 
+<!-- FOOTER -->
 <footer>
   © <span id="year"></span> Gold Standard Detailing.
 </footer>
@@ -263,11 +270,13 @@ footer {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
+
 document.getElementById("year").textContent = new Date().getFullYear();
 
 const form = document.getElementById("contactForm");
 
 form.addEventListener("submit", (e) => {
+
   e.preventDefault();
 
   const name = document.getElementById("name").value.trim();
@@ -275,11 +284,14 @@ form.addEventListener("submit", (e) => {
   const message = document.getElementById("message").value.trim();
 
   const emailTo = "thomas@goldstandarddetailing.com";
+
   const fullSubject = encodeURIComponent(subject);
   const fullBody = encodeURIComponent(`Name: ${name}\n\n${message}`);
 
   window.location.href = `mailto:${emailTo}?subject=${fullSubject}&body=${fullBody}`;
+
 });
+
 </script>
 
 </body>
