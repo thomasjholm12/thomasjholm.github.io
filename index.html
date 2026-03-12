@@ -190,7 +190,110 @@ body {
 .gold-btn:hover {
   transform: scale(1.05);
 }
+/* ================= REVIEWS ================= */
 
+.reviews-section{
+background:#0b0b0b;
+padding:120px 20px;
+overflow:hidden;
+position:relative;
+}
+
+.reviews-section::before,
+.reviews-section::after{
+content:"";
+position:absolute;
+top:0;
+width:120px;
+height:100%;
+z-index:2;
+pointer-events:none;
+}
+
+.reviews-section::before{
+left:0;
+background:linear-gradient(to right,#0b0b0b,transparent);
+}
+
+.reviews-section::after{
+right:0;
+background:linear-gradient(to left,#0b0b0b,transparent);
+}
+.reviews-title{
+text-align:center;
+font-size:2.2rem;
+font-weight:600;
+margin-bottom:60px;
+}
+.rating-summary{
+text-align:center;
+margin-bottom:40px;
+}
+
+.rating-stars{
+color:var(--gold);
+font-size:1.4rem;
+letter-spacing:3px;
+}
+
+.rating-text{
+color:var(--text-muted);
+font-size:.95rem;
+}
+
+.reviews-title span{
+color:var(--gold);
+}
+
+.review-container{
+display:flex;
+gap:25px;
+animation:scrollReviews 45s linear infinite;
+}
+.review-container:hover{
+animation-play-state: paused;
+}
+.review-card{
+background:#171717;
+border-radius:18px;
+padding:25px;
+min-width:300px;
+max-width:320px;
+box-shadow:0 10px 30px rgba(0,0,0,.6);
+transition:transform .3s ease;
+}
+
+.review-card:hover{
+transform:translateY(-6px);
+}
+
+.stars{
+color:var(--gold);
+font-size:1.2rem;
+margin-bottom:10px;
+}
+
+.review-text{
+font-size:.95rem;
+color:var(--text-muted);
+margin-bottom:15px;
+}
+
+.reviewer{
+font-weight:600;
+font-size:.9rem;
+}
+
+@keyframes scrollReviews{
+0%{transform:translateX(0)}
+100%{transform:translateX(-100%)}
+}
+
+@media(max-width:768px){
+.review-card{
+min-width:260px;
+}
+}
 footer {
   background: #1a1a1a;
   padding: 40px 0;
@@ -234,7 +337,86 @@ footer {
 
   </div>
 </nav>
+<section class="reviews-section">
 
+<div class="reviews-title">
+⭐ <span>5.0 Rating</span> • Based on 42 Google Reviews
+</div>
+<div class="rating-summary">
+<div class="rating-stars">★★★★★</div>
+<div class="rating-text">5.0 Average Rating • 42 Verified Google Reviews</div>
+</div>
+<div class="review-container">
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+Best detailing service I've ever used. My car looked brand new again.
+</div>
+<div class="reviewer">— Michael R.</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+Gold Standard Detailing absolutely lives up to the name.
+</div>
+<div class="reviewer">— Sarah T.</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+My truck hasn't looked this clean since I bought it.
+</div>
+<div class="reviewer">— Jason L.</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+Fast, professional, and extremely thorough.
+</div>
+<div class="reviewer">— Daniel K.</div>
+</div>
+
+<!-- duplicated cards for seamless animation -->
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+Best detailing service I've ever used. My car looked brand new again.
+</div>
+<div class="reviewer">— Michael R.</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+Gold Standard Detailing absolutely lives up to the name.
+</div>
+<div class="reviewer">— Sarah T.</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+My truck hasn't looked this clean since I bought it.
+</div>
+<div class="reviewer">— Jason L.</div>
+</div>
+
+<div class="review-card">
+<div class="stars">★★★★★</div>
+<div class="review-text">
+Fast, professional, and extremely thorough.
+</div>
+<div class="reviewer">— Daniel K.</div>
+</div>
+
+</div>
+
+</section>
 <section class="services-preview">
   <div class="container text-center mb-5">
     <h2 class="display-5 fw-bold">Premium Detailing Services</h2>
