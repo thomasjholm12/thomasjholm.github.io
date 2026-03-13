@@ -10,68 +10,65 @@
       background: #0f0f0f;
       color: white;
       font-family: system-ui;
-    }
-
-    .booking-wrapper {
-      padding: 40px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
     }
 
     h1 {
-      text-align: center;
-      margin-bottom: 20px;
       font-weight: 600;
+    }
+
+    p {
+      opacity: 0.7;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="booking-wrapper">
-    <h1 id="serviceTitle">Book Your Appointment</h1>
+<div>
+  <h1 id="serviceTitle">Redirecting to Booking...</h1>
+  <p>If you are not redirected automatically, please wait a moment.</p>
+</div>
 
-    <div class="calendly-inline-widget"
-         id="calendlyWidget"
-         style="min-width:320px;height:900px;">
-    </div>
-  </div>
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const service = params.get("service");
 
-  <script>
-    const params = new URLSearchParams(window.location.search);
-    const service = params.get("service");
+  const serviceTitle = document.getElementById("serviceTitle");
 
-    const calendlyWidget = document.getElementById("calendlyWidget");
-    const serviceTitle = document.getElementById("serviceTitle");
+  let bookingUrl = "";
 
-    let calendlyUrl = "";
+  if (service === "interior") {
+    bookingUrl = "https://calendar.app.google/DbWcicNHoR2EBfK56";
+    serviceTitle.textContent = "Opening Interior Detail Booking...";
+  }
 
-    if (service === "interior") {
-      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail";
-      serviceTitle.textContent = "Book an Interior Detail";
-    }
+  if (service === "exterior") {
+    bookingUrl = "https://calendar.app.google/uScWukMa9rRBaqwA9";
+    serviceTitle.textContent = "Opening Exterior Detail Booking...";
+  }
 
-    if (service === "exterior") {
-      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/exterior-detail";
-      serviceTitle.textContent = "Book an Exterior Detail";
-    }
+  if (service === "gold") {
+    bookingUrl = "https://calendar.app.google/eZbzKT9eB8fZ2N1z6";
+    serviceTitle.textContent = "Opening Gold Standard Service Booking...";
+  }
 
-    if (service === "gold") {
-      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/gold-standard";
-      serviceTitle.textContent = "Book Gold Standard Service";
-    }
-    if (service === "full") {
-      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/full-detail";
-      serviceTitle.textContent = "Book Full Detail Service";
-    }
+  if (service === "full") {
+    bookingUrl = "https://calendar.app.google/HDsozHxA1ippjnZQA";
+    serviceTitle.textContent = "Opening Full Detail Booking...";
+  }
 
-    // Fallback if no parameter
-    if (!calendlyUrl) {
-      calendlyUrl = "https://calendly.com/thomas-goldstandarddetailing/interior-detail";
-    }
+  // fallback
+  if (!bookingUrl) {
+    bookingUrl = "https://calendar.app.google/DbWcicNHoR2EBfK56";
+  }
 
-    calendlyWidget.setAttribute("data-url", calendlyUrl);
-  </script>
-
-  <script src="https://assets.calendly.com/assets/external/widget.js"></script>
+  window.location.href = bookingUrl;
+</script>
 
 </body>
 </html>
